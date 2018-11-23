@@ -1,31 +1,26 @@
 <?php
+class Database{
 
-class DBClass {
+    // specify your own database credentials
+    private $host = "localhost";
+    private $db_name = "transporte";
+    private $username = "root";
+    private $password = "root";
+    public $conn;
 
-  private $host = "localhost";
-  private $username = "root";
-  private $password = "root";
-  private $database = "transporte";
+    // get the database connection
+    public function getConnection(){
 
-  public $connection;
+        $this->conn = null;
 
-  public function getConnection(){
-    $this->connection = null;
+        try{
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->conn->exec("set names utf8");
+        }catch(PDOException $exception){
+            echo "Connection error: " . $exception->getMessage();
+        }
 
-    try
-    {
-      $this->connection = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->database, $this->username, $this->password);
-      $this->connection->exec("set names utf8");
-    }catch(PDOException $exception){
-      echo "Error: " . $exception->getMessage();
-      }
-
-      return $this->connection;
-
-  }
-
+        return $this->conn;
+    }
 }
-
-
-
- ?>
+?>

@@ -30,13 +30,18 @@ if($num>0){
 
     // retrieve our table contents
     // fetch() is faster than fetchAll()
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    //FETCH_ASSOC ->obtiene uan fila de resultado como un array asociativo
+    //fetch() -> obitnee la siguiente fila de un conjunto de resultados
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         // extract row
         // this will make $row['name'] to
         // just $name only
+
+        //extract-> importa variables a la tabla de simbolos actual desde un array
+        //extraigo lo que hay en row
         extract($row);
 
-
+        //en el array chofer_datos guardo en cada variable asociativa su respectivo contenido de la base de datos
         $chofer_item=array(
             "apellido" => $apellido,
             "nombre" => $nombre,
@@ -44,10 +49,11 @@ if($num>0){
             "email" => $email,
             "vehiculo_id" => $vehiculo_id,
             "sistema_id" => $sistema_id,
+            "modelo_vehiculo" => $modelo_vehiculo,
             "created" => $created,
             "updated" => $updated
         );
-
+        //pusheo los valores de chofer_datos en chofer_arr
         array_push($chofer_arr["records"], $chofer_item);
     }
 

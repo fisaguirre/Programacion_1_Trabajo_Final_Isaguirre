@@ -5,6 +5,8 @@
 //self = se utiliza para referenciar a la clase actual, para variables o metodos estaticos
 //parent = se utiliza cuando se quiere acceder a una constante o metodo de la clase padre
 //:: = se utiliza para referenciar funciones en clases que aun no tienen instancias
+
+//clase Chofer del objeto chofer
 class Chofer{
 
     // Connection instance
@@ -24,42 +26,22 @@ class Chofer{
     public $created;
     public $updated;
 
+
     //creo el constructor con parametro $db
     //accedo a la variable connection y guardo el valor $db
     public function __construct($db){
         $this->conn = $db;
     }
 
-
-    /*
-    public function create(){
-      $sql = "INSERT INTO ". $this->table_name ." SET chofer_id=:chofer_id, apellido=:apellido, nombre=:nombre, document=:documento, email=:email, vehiculo_id=:vehiculo_id, created=:created, updated=:updated";
-
-      //preparar sql
-      $stmt = $this->connection->prepare($sql);
-
-      // Sanitize - Security!
-      //stripp_tags -> elimina toda etiqueta html
-      //htmlspecialchars-> convierte caracteres especiales a entidades HTML
-
-      $this->chofer_id=htmlspecialchars(strip_tags($this->chofer_id));
-      $this->apellido=htmlspecialchars(strip_tags($this->apellido));
-      $this->nombre=htmlspecialchars(strip_tags($this->nombre));
-      $this->documento=htmlspecialchars(strip_tags($this->documento));
-      $this->email=htmlspecialchars(strip_tags($this->email));
-      $this->vehiculo_id=htmlspecialchars(strip_tags($this->vehiculo_id));
-      $this->sistema_id=htmlspecialchars(strip_tags($this->sistema_id));
-      $this->created=htmlspecialchars(strip_tags($this->created));
-      $this->updated=htmlspecialchars(strip_tags($this->updated));
-
-
-
-    }*/
-
-    // read products
 function read(){
 
     // select all query
+    $query = "SELECT v.modelo as modelo_vehiculo, c.apellido, c.nombre, c.documento,
+     c.email, c.vehiculo_id, c.sistema_id
+      FROM " . $this->table_name . " c LEFT JOIN vehiculo v ON c.vehiculo_id = v.vehiculo_id
+       ORDER BY c.documento";
+
+
   //pos  $query = "SELECT chofer.nombre, sistema_vehiculo.sistemavehiculo_id FROM chofer LEFT JOIN sistema_vehiculo ON chofer.vehiculo_id = sistema_vehiculo.sistemavehiculo_id";
 /*
                $query = "SELECT
@@ -74,19 +56,7 @@ function read(){
                               ON c.sistema_id = s.sistema_id
                       ORDER BY
                           c.created DESC";*/
-$query= "SELECT * FROM chofer";
 
-
-  /*  $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
-            FROM
-                " . $this->table_name . " p
-                LEFT JOIN
-                    categories c
-                        ON p.category_id = c.id
-            ORDER BY
-                p.created DESC";
-*/
     // prepare query statement
     $stmt = $this->conn->prepare($query);
 
@@ -94,6 +64,42 @@ $query= "SELECT * FROM chofer";
     $stmt->execute();
 
     return $stmt;
+}
+
+
+function create()
+{
+  $query="INSERT INTO " . $this->table_name . " SET nombre=:nombre, apellido=:apellido, documento=:documento, email=:email, vehiculo_id=:vehiculo_id, sistema_id=:sistema_id, created=:created";
+
+  $stmt = $this->conn->prepare($query);
+
+      //retira las etiquetas HTML y PHP de un string
+      $this->apellido=strip_tags($this->apellido);
+      $this->nombre=strip_tags($this->nombre);
+      $this->documento=strip_tags($this->documento);
+      $this->email=strip_tags($this->email);
+      $this->vehiculo_id=strip_tags($this->vehiculo_id);
+      $this->sistema_id=strip_tags($this->sistema_id);
+      $this->created=strip_tags($this->created);
+
+      // bind values
+      //bindParam= Agrega variables a una sentencia preparada como parámetros(en este caso la query que hicimos)
+      //$this->apellido es lo que mando por POSTMAN
+      //aca lo blinqueo y lo guardo en :"nombre_campo", porque cuando hago la consulta todavia no tengo guardados los valores mandados por POST
+      //por tema de seguridad no se puede poner en la consulta el this
+      $stmt->bindParam(":apellido", $this->apellido);
+      $stmt->bindParam(":nombre", $this->nombre);
+      $stmt->bindParam(":documento", $this->documento);
+      $stmt->bindParam(":email", $this->email);
+      $stmt->bindParam(":vehiculo_id", $this->vehiculo_id);
+      $stmt->bindParam(":sistema_id", $this->sistema_id);
+      $stmt->bindParam(":created", $this->created);
+      // execute query
+      if($stmt->execute()){
+          return true;
+      }
+      return false;
+
 }
 
 }

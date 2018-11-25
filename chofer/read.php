@@ -31,7 +31,9 @@ if($num>0){
     // retrieve our table contents
     // fetch() is faster than fetchAll()
     //FETCH_ASSOC ->obtiene uan fila de resultado como un array asociativo
-    //fetch() -> obitnee la siguiente fila de un conjunto de resultados
+    //fetch() -> obtiene la siguiente fila de un conjunto de resultados
+    //PDO::FETCH_ASSOC = devuelve un array indexado por los nombres de las
+    //columnas del conjunto de resultados.
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         // extract row
         // this will make $row['name'] to

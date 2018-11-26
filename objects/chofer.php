@@ -188,6 +188,30 @@ return false;
 
 }
 
+function delete()
+{
+
+
+    $query="DELETE FROM " . $this->table_name . " WHERE chofer_id = ?";
+
+    $stmt=$this->conn->prepare($query);
+
+    $this->chofer_id=strip_tags($this->chofer_id);
+
+    $stmt->bindParam(1,$this->chofer_id);
+
+
+    //si le paso como parametro "$query" no funciona
+    //porque ya esta preparada anteriormente(le habia pasado la $query)
+    if($stmt->execute())
+    {
+        return true;
+    }
+
+    return false;
+
+}
+
 
 
 

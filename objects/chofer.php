@@ -140,6 +140,55 @@ function search()
   $this->modelo_vehiculo=$row['modelo_vehiculo'];
 
 
+
 }
+
+function update()
+{
+
+
+  $query="UPDATE " . $this->table_name . " SET nombre=:nombre, apellido=:apellido, documento=:documento,
+  email=:email, vehiculo_id=:vehiculo_id, sistema_id=:sistema_id WHERE chofer_id=:chofer_id";
+
+
+  $stmt=$this->conn->prepare($query);
+
+  //retiramos etiquetas de lo enviado por POST
+  
+  $this->nombre=strip_tags($this->nombre);
+  $this->apellido=strip_tags($this->apellido);
+  $this->documento=strip_tags($this->documento);
+  $this->email=strip_tags($this->email);
+  $this->vehiculo_id=strip_tags($this->vehiculo_id);
+  $this->sistema_id=strip_tags($this->sistema_id);
+  $this->chofer_id=strip_tags($this->chofer_id);
+
+  //vinculamos el parametro $this->"campo" a la variable :"nombre"
+  //(guardamos lo que hay en la referencia en :"nombre")
+  //$this->"nombre_campo" es lo enviado por POST
+
+
+  //$stmt->????
+  $stmt->bindParam(":nombre",$this->nombre);
+  $stmt->bindParam(":apellido",$this->apellido);
+  $stmt->bindParam(":documento",$this->documento);
+  $stmt->bindParam(":email",$this->email);
+  $stmt->bindParam(":vehiculo_id",$this->vehiculo_id);
+  $stmt->bindParam(":sistema_id",$this->sistema_id);
+  $stmt->bindParam(":chofer_id",$this->chofer_id);
+
+
+
+  if($stmt->execute()){
+    return true;
+}
+
+return false;
+
+
+}
+
+
+
 
 }

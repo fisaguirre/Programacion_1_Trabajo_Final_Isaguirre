@@ -19,7 +19,7 @@ $cantidad=$stmt->rowCount();
 $arr_vehiculo=array();
 $arr_vehiculo["records"]=array();
 
-//vemos si hay por lo menos un registro
+//vemos si hay por lo menos un registros
 if($cantidad>0)
 {
     //obtenemos un array de los registros y los recuperamos con fetch refenciado por $stmt
@@ -29,7 +29,6 @@ if($cantidad>0)
 
         //sin extract no puedo ponerlos en $arr_items
         extract($row);
-
 
         $arr_items=array(
             "id" => $vehiculo_id,

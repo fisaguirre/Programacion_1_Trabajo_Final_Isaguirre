@@ -104,45 +104,6 @@ function create()
 
 
 
-function search()
-{
-/*  $query="SELECT v.modelo as modelo_vehiculo, c.chofer_id, c.nombre, c.apellido, c.documento,
-  c.email, c.vehiculo_id, c.sistema_id FROM " . $this->table_name . " c LEFT JOIN vehiculo v
-  ON c.vehiculo_id=v.vehiculo_id WHERE c.chofer_id=? LIMIT 0,1";
-  //limitar la cantidad de registros a retornar
-  //en este caso salto el 0 y empiezo despues del 0, y retorna 1 solo registro que sera el primero
-*/
-  $query="SELECT v.modelo as modelo_vehiculo, c.chofer_id, c.nombre, c.apellido, c.documento,
-  c.email, c.vehiculo_id, c.sistema_id, c.created FROM " . $this->table_name . " c LEFT JOIN vehiculo v
-  ON v.vehiculo_id=c.vehiculo_id WHERE c.chofer_id = ? LIMIT 0,1";
-
-  $stmt = $this->conn->prepare($query);
-
-  //para ejecutar una sentencia preparada con parametros de sustitucion de signos de interrogacion
-  //lo que obtengo por GET que seria($this->chofer_id), lo guardo en el signo de interrogacion
-  //de la query de c.chofer_id
-  //el "1" marca el primer signo de interrogacion
-  $stmt->bindParam(1,$this->chofer_id);
-
-  $stmt->execute();
-
-  //obtener fila recuperada
-  //en toda esta fila se encuentran los datos que hago de la query
-  //los extraigo en un array, los guardo en una fila mediante fetch referenciado por $stmt
-  //y los guardo en row
-  $row=$stmt->fetch(PDO::FETCH_ASSOC);
-
-  $this->nombre=$row['nombre'];
-  $this->apellido=$row['apellido'];
-  $this->documento=$row['documento'];
-  $this->vehiculo_id=$row['vehiculo_id'];
-  $this->sistema_id=$row['sistema_id'];
-  $this->modelo_vehiculo=$row['modelo_vehiculo'];
-
-
-
-}
-
 function update()
 {
 
@@ -212,6 +173,31 @@ function delete()
 
 }
 
+
+function search($keyword)
+{
+/*
+    $query="SELECT c.nombre, c.apellido, c.documento, c.email, c.vehiculo_id, c.sistema_id, v.modelo as modelo_nombre FROM " . $this->table_name . " c 
+    LEFT JOIN vehiculo v ON c.vehiculo_id = v.vehiculo_id WHERE c.nombre LIKE ? OR v.modelo LIKE ? ORDER BY c.created DESC";
+*/
+    $query="SELECT * FROM " . $this->table_name . " WHERE chofer_id LIKE ? OR nombre LIKE ? OR apellido LIKE ? OR documento LIKE ? ORDER BY created DESC";
+
+    $stmt=$this->conn->prepare($query);
+
+    $keyword=strip_tags($keyword);
+    $keyword = "%{$keyword}%";
+
+    $stmt->bindParam(1,$keyword);
+    $stmt->bindParam(2,$keyword);
+    $stmt->bindParam(3,$keyword);
+    $stmt->bindParam(4,$keyword);
+
+    $stmt->execute();
+
+    return $stmt;
+ 
+
+}
 
 
 

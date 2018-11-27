@@ -1,8 +1,8 @@
 <?php
-class vehiculo{
+class Vehiculo{
 
     // Connection instance
-    private $connection;
+    private $conn;
 
     // table name
     private $table_name = "vehiculo";
@@ -17,6 +17,23 @@ class vehiculo{
     public $created;
     public $updated;
 
-    public function __construct($connection){
-        $this->connection = $connection;
+    public function __construct($conn){
+        $this->conn = $conn;
     }
+
+
+    function read()
+    {
+        $query="SELECT * FROM " . $this->table_name . " ORDER BY patente";
+       // $query="SELECT patente FROM " . $this->table_name . " ";
+
+        $stmt=$this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+}
+
+?>

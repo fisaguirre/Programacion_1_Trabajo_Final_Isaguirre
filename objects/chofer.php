@@ -87,7 +87,10 @@ function create()
       //$this->apellido es lo que mando por POSTMAN
       //aca lo blinqueo y lo guardo en :"nombre_campo", porque cuando hago la consulta todavia no tengo guardados los valores mandados por POST
       //por tema de seguridad no se puede poner en la consulta el this
-      $stmt->bindParam(":apellido", $this->apellido);
+
+      $variable=$this->apellido;
+
+      $stmt->bindParam(":apellido", $variable);
       $stmt->bindParam(":nombre", $this->nombre);
       $stmt->bindParam(":documento", $this->documento);
       $stmt->bindParam(":email", $this->email);

@@ -35,11 +35,13 @@ class Chofer{
 
 function read(){
 
-    // select all query
+    
     $query = "SELECT v.modelo as modelo_vehiculo, c.apellido, c.nombre, c.documento,
-     c.email, c.vehiculo_id, c.sistema_id
+     c.email, c.vehiculo_id, c.sistema_id, c.created, c.updated
       FROM " . $this->table_name . " c LEFT JOIN vehiculo v ON c.vehiculo_id = v.vehiculo_id
        ORDER BY c.documento";
+       
+
 
 
   //pos  $query = "SELECT chofer.nombre, sistema_vehiculo.sistemavehiculo_id FROM chofer LEFT JOIN sistema_vehiculo ON chofer.vehiculo_id = sistema_vehiculo.sistemavehiculo_id";

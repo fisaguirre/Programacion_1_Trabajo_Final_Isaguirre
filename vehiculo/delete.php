@@ -1,5 +1,6 @@
 <?php
-
+if($_SERVER['HTTP_REFERER'] == "crud.php"){
+  
 
 // required headers
 header("Access-Control-Allow-Origin: *");
@@ -49,5 +50,9 @@ else{
 //sistema_transporte
 
 
+}
+else {
+  echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
+}
 
  ?>

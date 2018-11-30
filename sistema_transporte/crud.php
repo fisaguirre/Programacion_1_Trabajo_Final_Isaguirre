@@ -1,4 +1,5 @@
 <?php
+include '../user/validate_token.php';
 
 if($_SERVER['REQUEST_METHOD']==='GET'){
     include 'read.php';

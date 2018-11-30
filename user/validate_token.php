@@ -1,10 +1,19 @@
 <?php
 // required headers
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Origin: *");//significa que el recurso puede ser accesado por cualquier(*) dominio en una forma de sitio cruzado.
+//Permite a cualquier origen el acceso a tus recursos
+
+header("Content-Type: application/json; charset=UTF-8");//designa el contenido para que estè en formato JSON, codificado en la codificacion
+//de caracteres UTF-8
+
+header("Access-Control-Allow-Methods: POST");//especifica el metodo o los metodos aceptados cuando se accede al recurso en respuesta de un preflight request.
+
+header("Access-Control-Max-Age: 3600");//indica cuanto tiempo se pueden almacenar en cachelos resultados de una solicitud de verificacion previa
+
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+//Al servidor le corresponde especificar que acpeta solicituds de origen cruzado (y que permite el encabezado de solicitud de tipo de contenido,
+//y así sucesivamente): el cliente no puede decidir por sí mismo que un servidor determinado debe permitir CORS.
+
 
 require_once '../libs/vendor/autoload.php';
 use \Firebase\JWT\JWT;
@@ -12,7 +21,9 @@ include_once '../config/core.php';
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
-// get jwt
+
+//el ? significa que si se cumple(true) pasa al segundo parametro($data->jwt) y si no se cumple el primero pasa al tercero("") o sea nulo
+//o sea que si es true $jwt=$data->jwt, si es falso $jwt=""(nulo);
 $jwt=isset($data->jwt) ? $data->jwt : "";
 
 // if jwt is not empty
@@ -28,7 +39,7 @@ if($jwt){
 
         // show user details
         echo json_encode(array(
-            "message" => "Access granted.",
+       //     "message" => "Access granted.",
             "data" => $decoded->data
         ));
 
@@ -45,6 +56,7 @@ if($jwt){
           "message" => "Access denied.",
           "error" => $e->getMessage()
       ));
+      exit;
   }
 }
 
@@ -56,4 +68,6 @@ else{
 
     // tell the user access denied
     echo json_encode(array("message" => "Access denied."));
+
+    exit;
 }

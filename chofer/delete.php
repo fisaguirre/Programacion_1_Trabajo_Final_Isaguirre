@@ -1,5 +1,7 @@
 <?php
 
+if($_SERVER['HTTP_REFERER'] == "crud.php"){
+
 //delete va como el update o como search con una key
 // required headers
 header("Access-Control-Allow-Origin: *");
@@ -43,6 +45,10 @@ else{
 
     echo json_encode(array("message"=> "no se encontro ningun chofer"));
 }
+}
+else{
+    echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
+  }
 
 
 

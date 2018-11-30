@@ -1,6 +1,8 @@
 <?php
 
 
+if($_SERVER['HTTP_REFERER'] == "crud.php"){
+  
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
@@ -44,5 +46,9 @@ else{
 //hacer un delete con clave? como en search, para borrar cualquier registro con esa clave/
 //aunque se borrarian muchos registros....
 
+}
+else {
+  echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
+}
 
  ?>

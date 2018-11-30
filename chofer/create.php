@@ -1,6 +1,7 @@
 <?php
 
-function morir(){
+
+if($_SERVER['HTTP_REFERER'] == "crud.php"){
   
 // required headers
 header("Access-Control-Allow-Origin: *");
@@ -9,6 +10,8 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+
+header('Location: crud.php');
 //incluyo conexion y objeto chofer
  include_once '../config/database.php';
  include_once '../objects/chofer.php';
@@ -79,6 +82,9 @@ if(
 //vehiculo
 //sistema_transporte
 
-}
 
+}
+else {
+  echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
+}
  ?>

@@ -1,5 +1,6 @@
 <?php
-
+if($_SERVER['HTTP_REFERER'] == "crud.php"){
+  
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET");
@@ -54,6 +55,10 @@ if($cantidad>0)
     http_response_code(404);
 
     echo json_encode(array("message"=>"no se encontro ningun registro"));
+}
+}
+else {
+  echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
 }
 
 ?>

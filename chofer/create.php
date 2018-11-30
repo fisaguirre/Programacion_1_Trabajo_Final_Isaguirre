@@ -1,6 +1,7 @@
 <?php
 
-
+function morir(){
+  
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -77,5 +78,7 @@ if(
 //chofer
 //vehiculo
 //sistema_transporte
+
+}
 
  ?>

@@ -2,7 +2,7 @@
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: PUT");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
@@ -35,17 +35,34 @@ $chofer->sistema_id=$data->sistema_id;
 $chofer->vehiculo_id=$data->vehiculo_id;
 
 
-//llamamos al metodo update() del objeto chofer
-if($chofer->update())
-{
-    http_response_code(200);
+if(
+    !empty($data->chofer_id) &&
+    !empty($data->nombre) &&
+    !empty($data->apellido) &&
+    !empty($data->documento) &&
+    !empty($data->email) &&
+    !empty($data->vehiculo_id) &&
+    !empty($data->sistema_id)
+    )
+  {
+       
+        if($chofer->update()){
 
-    echo json_encode(array("message" => "chofer actualizado correctamente"));
+        http_response_code(200);
+        echo json_encode(array("message" => "chofer actualizado correctamente"));
+
+        }else{
+
+            http_response_code(503);
+            echo json_encode(array("message" => "chofer no se ha actualizado"));
+        }
 }else{
     http_response_code(503);
 
-    echo json_encode(array("message" => "chofer no se ha actualizado"));
+    echo json_encode(array("message"=> "faltan datos"));
 }
+      
+               
 
 
 

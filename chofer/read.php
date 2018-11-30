@@ -1,6 +1,9 @@
 <?php
+
+    
 // required headers
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET");
 header("Content-Type: application/json; charset=UTF-8");
 
 //conexion base de datos
@@ -63,7 +66,9 @@ if($num>0){
     http_response_code(200);
 
     // show products data in json format
+
     echo json_encode($chofer_arr);
+
 }
 
 // si no se encuentran registros entonces:
@@ -77,5 +82,7 @@ else{
         array("message" => "No choferes found.")
     );
 }
+
+
 
 ?>

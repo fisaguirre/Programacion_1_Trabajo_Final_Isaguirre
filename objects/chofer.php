@@ -116,7 +116,6 @@ function update()
   $query="UPDATE " . $this->table_name . " SET nombre=:nombre, apellido=:apellido, documento=:documento,
   email=:email, vehiculo_id=:vehiculo_id, sistema_id=:sistema_id WHERE chofer_id=:chofer_id";
 
-
   $stmt=$this->conn->prepare($query);
 
   //retiramos etiquetas de lo enviado por POST
@@ -153,7 +152,17 @@ return false;
 
 
 }
+/*
+function verificar($id){
+    $query="SELECT chofer_id FROM " . $this->table_name . "";
 
+    $stmt=$this->conn->prepare($query);
+    
+    $array=array();
+
+    $a=$stmt->fetch
+}
+*/
 function delete()
 {
 

@@ -1,10 +1,10 @@
 <?php
 
-
+//delete va como el update o como search con una key
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
-header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Methods: DELETE");
 header("Access-Control-Allow-Credentials: true");
 header('Content-Type: application/json');
 
@@ -21,6 +21,8 @@ $data=json_decode(file_get_contents("php://input"));
 
 $chofer->chofer_id=$data->chofer_id;
 
+//hacer metodo para verificar si existe
+//$chofer->verificar($id);
 
 //despues hacer un if que llame a un metodo del objeto chofer para que verifique con un array si el chofer_id pasado por POST existe 
 //y mandar una respuesta de error de chofer no encontrado o no existente

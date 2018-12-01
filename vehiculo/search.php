@@ -16,7 +16,7 @@ $db=$database->getConnection();
 $vehiculo=new Vehiculo($db);
 
 //obtenemos palabra clave
-$keyword=isset($_GET["s"]) ? $_GET["s"] : "";
+$keyword=isset($_GET["key"]) ? $_GET["key"] : "";
 
 $stmt=$vehiculo->search($keyword);
 $num=$stmt->rowCount();

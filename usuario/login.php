@@ -60,7 +60,9 @@ if($usuario_exists && password_verify($data->clave, $usuario->clave)){
                 "jwt" => $jwt
             )
         );
-
+        $hoy = date("Y-m-d");
+        echo json_encode($hoy);
+        return $hoy;
 }
 
 else{

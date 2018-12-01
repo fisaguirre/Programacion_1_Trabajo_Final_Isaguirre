@@ -17,7 +17,7 @@ $db=$database->getConnection();
 $sistema_transporte=new Sistema_transporte($db);
 
 //obtenemos palabra clave
-$keyword=isset($_GET["s"]) ? $_GET["s"] : "";
+$keyword=isset($_GET["key"]) ? $_GET["key"] : "";
 
 $stmt=$sistema_transporte->search($keyword);
 $num=$stmt->rowCount();

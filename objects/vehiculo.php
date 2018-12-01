@@ -144,13 +144,16 @@ function search($keyword)
 {
 
     
-    $query="SELECT * FROM " . $this->table_name . " WHERE vehiculo_id LIKE ? OR patente LIKE ? OR anho_patente LIKE ? OR anho_fabricacion LIKE ? 
+    $query="SELECT * FROM " . $this->table_name . " WHERE vehiculo_id LIKE ? OR patente LIKE ? 
+    OR anho_patente LIKE ? OR anho_fabricacion LIKE ? 
     OR marca LIKE ? OR modelo LIKE ? ORDER BY created DESC";
+    
+   // $query="SELECT * FROM " . $this->table_name . " WHERE vehiculo_id LIKE ? ORDER BY vehiculo_id";
 
     $stmt=$this->conn->prepare($query);
 
     $keyword=strip_tags($keyword);
-    $keyword = "%{$keyword}%";
+  //  $keyword = "%{$keyword}%";
 
     $stmt->bindParam(1,$keyword);
     $stmt->bindParam(2,$keyword);

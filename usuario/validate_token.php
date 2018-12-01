@@ -1,4 +1,5 @@
 <?php
+
 // required headers
 header("Access-Control-Allow-Origin: *");//significa que el recurso puede ser accesado por cualquier(*) dominio en una forma de sitio cruzado.
 //Permite a cualquier origen el acceso a tus recursos
@@ -18,7 +19,8 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 require_once '../libs/vendor/autoload.php';
 use \Firebase\JWT\JWT;
 include_once '../config/core.php';
-// get posted data
+
+//en data guardo lo que mando por inpput(POST)
 $data = json_decode(file_get_contents("php://input"));
 
 

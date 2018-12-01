@@ -1,12 +1,13 @@
 <?php
 
 if($_SERVER['HTTP_REFERER'] == "crud.php"){
+  
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET");
 header("Content-Type: application/json; charset=UTF-8");
 
 include_once '../config/database.php';
-include_once '../config/core.php';
+//include_once '../config/core.php';
 include_once '../objects/chofer.php';
 
 //creamos objetos de tipo base de datos y conectamos
@@ -17,9 +18,15 @@ $db=$database->getConnection();
 $chofer=new Chofer($db);
 
 //obtenemos palabra clave
-$keyword=isset($_GET["k"]) ? $_GET["k"] : "";
+$keyword=isset($_GET["key"]) ? $_GET["key"] : "";
+//$keyword2=isset($_GET["documento"]) ? $_GET["documento"] : "";
+//$keyword3=isset($_GET["nombre"]) ? $_GET["nombre"] : "";
+//$keyword4=isset($_GET["documento"]) ? $_GET["documento"] : "";
 
+//$stmt=$chofer->search($keyword,$keyword2,$keyword3,$keyword4);
 $stmt=$chofer->search($keyword);
+
+
 $num=$stmt->rowCount();
 
 

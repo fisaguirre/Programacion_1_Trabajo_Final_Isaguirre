@@ -142,6 +142,7 @@ function update()
   //$stmt->????
   $stmt->bindParam(":nombre",$this->nombre);
   $stmt->bindParam(":pais_procedencia",$this->pais_procedencia);
+  $stmt->bindParam(":sistema_id",$this->sistema_id);
 
   if($stmt->execute()){
     return true;
@@ -156,13 +157,13 @@ return false;
 function search($keyword)
 {
 
-    $query="SELECT s.sistema_id, s.nombre, s.pais_procedencia, s.created, s.updated FROM " . $this->table_name . " s WHERE s.sistema_id LIKE ? OR 
-    s.nombre LIKE ? OR s.pais_procedencia LIKE ? ORDER BY created DESC";
+    $query="SELECT s.sistema_id, s.nombre, s.pais_procedencia, s.created, s.updated FROM 
+    " . $this->table_name . " s WHERE s.sistema_id LIKE ? OR s.nombre LIKE ? OR s.pais_procedencia LIKE ? ORDER BY sistema_id DESC";
 
     $stmt=$this->conn->prepare($query);
 
     $keyword=strip_tags($keyword);
-    $keyword = "%{$keyword}%";
+   // $keyword = "%{$keyword}%";
 
     $stmt->bindParam(1,$keyword);
     $stmt->bindParam(2,$keyword);

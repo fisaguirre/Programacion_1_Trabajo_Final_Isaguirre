@@ -1,9 +1,15 @@
 <?php
 
-include '../user/validate_token.php';
+$_SERVER['HTTP_REFERER'] = 'crud.php';////dirrecion de la pagina(si la hay)
 
-if($_SERVER['REQUEST_METHOD']==='GET'){
-    include 'read.php';
+include '../usuario/validate_token.php';
+
+if($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['jwt']) && isset($_get['k']) ) {
+    include 'search.php';
+    exit;
+}
+if($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['jwt'])){
+    include 'search.php';
     exit;
 }
 if($_SERVER['REQUEST_METHOD']==='POST'){

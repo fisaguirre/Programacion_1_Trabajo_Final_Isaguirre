@@ -2,6 +2,7 @@
 
 if($_SERVER['HTTP_REFERER'] == "crud.php"){
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET");
 header("Content-Type: application/json; charset=UTF-8");
 
 include_once '../config/database.php';
@@ -16,7 +17,7 @@ $db=$database->getConnection();
 $chofer=new Chofer($db);
 
 //obtenemos palabra clave
-$keyword=isset($_GET["s"]) ? $_GET["s"] : "";
+$keyword=isset($_GET["k"]) ? $_GET["k"] : "";
 
 $stmt=$chofer->search($keyword);
 $num=$stmt->rowCount();

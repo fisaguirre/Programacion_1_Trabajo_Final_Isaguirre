@@ -1,7 +1,6 @@
 <?php
 
-
-if($_SERVER['HTTP_REFERER'] == "crud.php"){
+if($_SERVER['HTTP_REFERER'] == "crud.php"){//dirrecion de la pagina(si la hay)
   
 // required headers
 header("Access-Control-Allow-Origin: *");

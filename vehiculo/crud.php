@@ -1,4 +1,5 @@
 <?php
+$_SERVER['HTTP_REFERER'] = 'crud.php';////dirrecion de la pagina(si la hay)
 
 include '../user/validate_token.php';
 

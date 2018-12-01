@@ -10,39 +10,32 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require_once '../libs/vendor/autoload.php';
 use \Firebase\JWT\JWT;
-// files needed to connect to database
+
 include_once '../config/database.php';
+include_once '../objects/usuario.php';
 
-// instantiate vehiculo object
-include_once '../objects/user.php';
-
-// get database connection
 $database = new Database();
 $db = $database->getConnection();
 
-// instantiate product object
-$user = new User($db);
+$usuario = new Usuario($db);
 
-// get posted data
 $data = json_decode(file_get_contents("php://input"));
-// set product property values
 if(
-    !empty($data->username) &&
-    !empty($data->password)
+    !empty($data->nombre) &&
+    !empty($data->clave)
 ){
-// set product property values
-$user->username = $data->username;
-$user->password = $data->password;
-$user_exists = $user->userExists();
+$usuario->nombre = $data->nombre;
+$usuario->clave = $data->clave;
+$usuario_exists = $usuario->usuarioExists();
 
-// generate json web token
+//generate json web token
 
 include_once '../config/core.php';
 
-//al llamar al a funcion userExists() guardamos en $user->password el hash
-//con password_verify comprobamos si lo que recibimos por input $data->password coincide con el hash $user->password
+//al llamar al a funcion usuarioExists() guardamos en $usuario->password el hash
+//con password_verify comprobamos si lo que recibimos por input $data->password coincide con el hash $usuario->password
 //(que se habia creado al momento de crear usuario)
-if($user_exists && password_verify($data->password, $user->password)){
+if($usuario_exists && password_verify($data->clave, $usuario->clave)){
 
     $token = array(
        "iss" => $iss,
@@ -50,8 +43,8 @@ if($user_exists && password_verify($data->password, $user->password)){
        "iat" => $iat,
        "nbf" => $nbf,
        "data" => array(
-           "user_id" => $user->user_id,
-           "username" => $user->username
+           "usuario_id" => $usuario->usuario_id,
+           "usuario" => $usuario->nombre
        )
     );
 
@@ -60,6 +53,7 @@ if($user_exists && password_verify($data->password, $user->password)){
 
     // generate jwt
     $jwt = JWT::encode($token, $key);
+    
     echo json_encode(
             array(
                 "message" => "Successful login.",
@@ -74,17 +68,17 @@ else{
    // set response code
    http_response_code(401);
 
-   // tell the user login failed
+   // tell the usuario login failed
    echo json_encode(array("message" => "Login failed."));
 }
 }
-// tell the user data is incomplete
+// tell the usuario data is incomplete
 
 else{
 
     // set response code - 400 bad request
     http_response_code(400);
 
-    // tell the user
+    // tell the usuario
     echo json_encode(array("message" => "Unable to login. Data is incomplete."));
 }

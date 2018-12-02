@@ -202,7 +202,7 @@ function search($keyword)
     $stmt=$this->conn->prepare($query);
 
     $keyword=strip_tags($keyword);
-    $keyword = "%{$keyword}%";
+   // $keyword = "%{$keyword}%";
 
 
   //  $keyword2=strip_tags($keyword2);

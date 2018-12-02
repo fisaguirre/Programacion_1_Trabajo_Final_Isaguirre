@@ -1,6 +1,6 @@
 <?php
 
-  function crear($name,$total_time){
+  function crear($name,$total_time,$endpoint){
     
 // required headers
 header("Access-Control-Allow-Origin: *");
@@ -30,7 +30,13 @@ $data = json_decode(file_get_contents("php://input"));
 //lee como fichero a los datos que paso por POST mediante POSTMAN
 //verificamos si $data no esta vacio
 
-  if($auditoria->create($name,$total_time)){
+$auditoria->user=$name;
+$auditoria->response_time=$total_time;
+$auditoria->endpoint=$endpoint;
+
+
+
+  if($auditoria->create()){
     http_response_code(201);
 
     echo json_encode(array("message" =>"Chofer ha sido creado"));

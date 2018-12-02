@@ -60,6 +60,7 @@ if($usuario_exists && password_verify($data->clave, $usuario->clave)){
                 "jwt" => $jwt
             )
         );
+        //hacer un return de date para fecha_acceso
 }
 
 else{

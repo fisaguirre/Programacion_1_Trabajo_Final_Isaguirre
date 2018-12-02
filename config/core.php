@@ -21,4 +21,5 @@ $nbf = 1357000000;
 //el tiempo de nbf es menor al iat para evitar probemas de region
 $time=time();
 $exp=$time+60;
+
 ?>

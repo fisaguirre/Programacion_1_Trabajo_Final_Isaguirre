@@ -10,7 +10,6 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 
-header('Location: crud.php');
 //incluyo conexion y objeto chofer
  include_once '../config/database.php';
  include_once '../objects/chofer.php';

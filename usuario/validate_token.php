@@ -23,7 +23,6 @@ include_once '../config/core.php';
 //en data guardo lo que mando por inpput(POST)
 $data = json_decode(file_get_contents("php://input"));
 
-
 //el ? significa que si se cumple(true) pasa al segundo parametro($data->jwt) y si no se cumple el primero pasa al tercero("") o sea nulo
 //o sea que si es true $jwt=$data->jwt, si es falso $jwt=""(nulo);
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -36,16 +35,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 if($jwt){
     // if decode succeed, show user details
     try {
+      $decoded = JWT::decode($jwt, $key, array('HS256'));
+
         // decode jwt
-        $decoded = JWT::decode($jwt, $key, array('HS256'));
         // set response code
         http_response_code(200);
 
+        $name=$decoded->data->usuario;
+        return $name;
+        
         // show user details
-      //  echo json_encode(array(
+       // echo json_encode(array(
         //    "message" => "Access granted.",
          //  "data" => $decoded->data
-       // ));
+        //));
 
     }
     // if decode fails, it means jwt is invalid

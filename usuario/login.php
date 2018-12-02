@@ -7,7 +7,6 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-
 require_once '../libs/vendor/autoload.php';
 use \Firebase\JWT\JWT;
 
@@ -20,6 +19,7 @@ $db = $database->getConnection();
 $usuario = new Usuario($db);
 
 $data = json_decode(file_get_contents("php://input"));
+
 if(
     !empty($data->nombre) &&
     !empty($data->clave)
@@ -60,9 +60,6 @@ if($usuario_exists && password_verify($data->clave, $usuario->clave)){
                 "jwt" => $jwt
             )
         );
-        $hoy = date("Y-m-d");
-        echo json_encode($hoy);
-        return $hoy;
 }
 
 else{

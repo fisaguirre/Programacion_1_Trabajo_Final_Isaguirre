@@ -7,7 +7,6 @@ $time = $time[1] + $time[0];
 $start = $time;
 include '../usuario/validate_token.php';
 
-echo json_encode($hoy);
 
 if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
     if( isset($_GET['key']) ) {
@@ -18,7 +17,6 @@ if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
         include 'read.php';
        // exit;
     }
-    
 }
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
@@ -39,4 +37,9 @@ $time = $time[1] + $time[0];
 $finish = $time;
 $total_time = round(($finish - $start), 4);
 echo 'Page generated in '.$total_time.' seconds.';
+include '../auditoria/create.php';
+
+crear($name,$total_time);
+
+
 ?>

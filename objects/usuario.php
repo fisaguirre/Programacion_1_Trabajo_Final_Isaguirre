@@ -19,7 +19,7 @@ class Usuario{
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                nombre=:nombre, clave=:clave, created=:created";
+                nombre=:nombre, clave=:clave, rol=:rol, created=:created";
 
 
         $stmt = $this->conn->prepare($query);
@@ -27,9 +27,11 @@ class Usuario{
 
         $this->nombre=strip_tags($this->nombre);
         $this->clave=strip_tags($this->clave);
+        $this->rol=strip_tags($this->rol);
         $this->created=strip_tags($this->created);
 
         $stmt->bindParam(':nombre', $this->nombre);
+        $stmt->bindParam(':rol', $this->rol);
         $stmt->bindParam(':created', $this->created);
 
         $clave_hash = password_hash($this->clave,PASSWORD_BCRYPT);

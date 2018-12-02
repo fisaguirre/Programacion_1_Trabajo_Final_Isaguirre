@@ -1,6 +1,5 @@
 <?php
 
-
 class auditoria{
 
     // Connection instance
@@ -43,10 +42,12 @@ class auditoria{
 
     function create(){
 
+
         $query="INSERT INTO " . $this->table_name . " SET user=:user, response_time=:response_time, 
         endpoint=:endpoint";
 
         $stmt=$this->conn->prepare($query);
+
 
         $stmt->bindParam(":user",$this->user);
         $stmt->bindParam(":response_time",$this->response_time);
@@ -60,7 +61,6 @@ class auditoria{
 
 
     }
-
 
 
 

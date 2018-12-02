@@ -1,7 +1,9 @@
+
+
 <?php
 
   function crear($name,$total_time,$endpoint){
-    
+   
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -29,11 +31,9 @@ $auditoria=new Auditoria($db);
 $data = json_decode(file_get_contents("php://input"));
 //lee como fichero a los datos que paso por POST mediante POSTMAN
 //verificamos si $data no esta vacio
-
 $auditoria->user=$name;
 $auditoria->response_time=$total_time;
 $auditoria->endpoint=$endpoint;
-
 
 
   if($auditoria->create()){

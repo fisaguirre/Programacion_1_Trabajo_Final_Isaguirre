@@ -1,5 +1,6 @@
-<?php
 
+<?php
+session_start();
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -36,7 +37,7 @@ include_once '../config/core.php';
 //con password_verify comprobamos si lo que recibimos por input $data->password coincide con el hash $usuario->password
 //(que se habia creado al momento de crear usuario)
 if($usuario_exists && password_verify($data->clave, $usuario->clave)){
-
+    $fecha=date("Y-m-d H:i:s");  
     $token = array(
        "iss" => $iss,
        "aud" => $aud,
@@ -53,14 +54,14 @@ if($usuario_exists && password_verify($data->clave, $usuario->clave)){
 
     // generate jwt
     $jwt = JWT::encode($token, $key);
-    
+
     echo json_encode(
             array(
                 "message" => "Successful login.",
                 "jwt" => $jwt
             )
         );
-        //hacer un return de date para fecha_acceso
+        
 }
 
 else{

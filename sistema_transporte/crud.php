@@ -11,25 +11,25 @@ include '../usuario/validate_token.php';
 if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
     if( isset($_GET['key']) ) {
         include 'search.php';
-        $endpoint='sistema_transporte-read';
+        $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/read.php/';
     }else{
         include 'read.php';
-        $endpoint='sistema_transporte-read';
+        $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/read.php/';
     }
     
 }
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
     include 'create.php';
-    $endpoint='sistema_transporte-create';
+    $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/create.php/';
 }
 if($_SERVER['REQUEST_METHOD']==='PUT'){
     include 'update.php';
-    $endpoint='sistema_transporte-updated';
+    $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/update.php/';
 }
 if($_SERVER['REQUEST_METHOD']==='DELETE'){
     include 'delete.php';
-    $endpoint='sistema_transporte-delete';
+    $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/delete.php/';
 }
 
 $time = microtime();

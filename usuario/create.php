@@ -23,12 +23,14 @@ $data = json_decode(file_get_contents("php://input"));
 
 if(
     !empty($data->nombre) &&
-    !empty($data->clave)
+    !empty($data->clave) && 
+    !empty($data->rol)
 ){
 
 
 $usuario->nombre = $data->nombre;
 $usuario->clave = $data->clave;
+$usuario->rol=$data->rol;
 $usuario->created = date('Y-m-d H:i:s');
 
 if($usuario->create()){

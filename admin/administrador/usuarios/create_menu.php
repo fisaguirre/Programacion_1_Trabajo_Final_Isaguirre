@@ -28,6 +28,8 @@ if($_SESSION['admin']!=1){
 
 
 </table>
+<a href="../menu_usuarios.php">Volver al menu</a>
+
 
 </body>
 </html>

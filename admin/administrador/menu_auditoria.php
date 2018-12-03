@@ -1,5 +1,12 @@
 <?php session_start() ?>
 
+<?php 
+
+if($_SESSION['admin']!=1){
+  header('Location: ../../login.html');
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -9,24 +16,15 @@
   </head>
   <body>
 
-<?php
 
+<form action="auditoria/mostrar_registros.php" method="POST">
+<input type="submit" name='read' value="Mostrar Registros de Auditoria">
+</form>
 
-if($_SESSION['admin']!=1){
-    header('Location: login.html');
-}
-if($_SESSION['admin']=0){
-    header('Location: usuario.php');
-}
+  <form action="auditoria/exportar.php" method="POST">
+  <input type="submit" name='export' value="Exportar Auditoria">
+  </form>
 
-
-?>
-
-<form action="administracion_usuarios.php" method="POST">
-<input type="submit" value="Usuarios">
-
-  <form action="administracion_auditoria.php" method="POST">
-  <input type="submit" value="Auditoria">
 <?php
 
 

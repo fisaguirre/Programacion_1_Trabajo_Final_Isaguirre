@@ -21,9 +21,11 @@ if($_SESSION['admin']!=1){
 
 <form action="administrador/menu_usuarios.php" method="POST">
 <input type="submit" value="Usuarios">
+</form>
 
-  <form action="/administrador/menu_auditoria.php" method="POST">
+  <form action="administrador/menu_auditoria.php" method="POST">
   <input type="submit" value="Auditoria">
+</form>
 <?php
 
 

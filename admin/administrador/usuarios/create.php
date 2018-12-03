@@ -7,6 +7,12 @@ if($_SESSION['admin']!=1){
 }
 ?>
 
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
 <?php
 
 include_once '../../../config/database.php';
@@ -42,3 +48,9 @@ if(
 
 
  ?>
+<a href="../menu_usuarios.php">Volver al menu</a>
+
+
+</body>
+</html>
+

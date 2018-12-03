@@ -1,6 +1,11 @@
 <?php session_start() ?>
 
+<?php 
 
+if($_SESSION['admin']!=1){
+  header('Location: ../../login.html');
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -9,15 +14,6 @@
   </head>
   <body>
 
-<?php
-
-
-if($_SESSION['admin']!=1){
-    header('Location: ../login.html');
-}
-
-
-?>
 
 <form action="usuarios/menu_crud.php" method="POST">
 <input type="submit" name="read" value="Leer Registros">

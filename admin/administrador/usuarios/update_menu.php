@@ -59,6 +59,7 @@ while($fila=$stmt->fetch(PDO::FETCH_ASSOC)){
     </form>
 
 
+<a href="../menu_usuarios.php">Volver al menu</a>
 
 </body>
 </html>

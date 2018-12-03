@@ -19,22 +19,22 @@ if($_SESSION['admin']!=1){
 
 ?>
 
-<form action="usuarios/read.php" method="POST">
-<input type="submit" name="valor" value="Leer Registros">
+<form action="usuarios/menu_crud.php" method="POST">
+<input type="submit" name="read" value="Leer Registros">
 </form>
 
-  <form action="usuarios/create_menu.php" method="POST">
-  <input type="submit" value="Crear Usuario">
+  <form action="usuarios/menu_crud.php" method="POST">
+  <input type="submit" name="create" value="Crear Usuario">
   </form>
 
 
-  <form action="usuarios/delete_menu.php" method="POST">
-  <input type="submit" value="Borrar Usuario">
+  <form action="usuarios/menu_crud.php" method="POST">
+  <input type="submit" name="delete" value="Borrar Usuario">
   </form>
 
 
-  <form action="usuarios/update_menu.php" method="POST">
-  <input type="submit" value="Modificar Usuario">
+  <form action="usuarios/menu_crud.php" method="POST">
+  <input type="submit" name="update" value="Modificar Usuario">
   </form>
 
 

@@ -1,3 +1,12 @@
+<?php session_start(); ?>
+
+<?php 
+
+if($_SESSION['admin']!=1){
+  header('Location: ../../login.html');
+}
+?>
+
 <?php
 
 include_once '../../../config/database.php';

@@ -1,9 +1,17 @@
+<?php session_start(); ?>
 
+<?php 
+
+if($_SESSION['admin']!=1){
+  header('Location: ../../login.html');
+}
+?>
 <html>
 <head>
 <title></title>
 </head>
 <body>
+
 
 <?php
 

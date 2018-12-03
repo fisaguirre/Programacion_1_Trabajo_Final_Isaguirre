@@ -15,6 +15,7 @@
 if($_SESSION['admin']!=1){
     header('Location: login.html');
 }
+//session_unset();
 
 ?>
 

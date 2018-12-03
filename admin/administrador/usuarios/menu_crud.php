@@ -1,6 +1,9 @@
 <?php session_start(); ?>
-<?php if($_SESSION['admin']!=1) {
-    header('Location ../../login.html');
+
+<?php 
+
+if($_SESSION['admin']!=1){
+  header('Location: ../../login.html');
 }
 ?>
 <html>
@@ -59,6 +62,22 @@ if($num>0){
     
 }
 
+
+if($_POST['search']){
+
+    ?>
+
+    <form action="search.php" method="POST">
+
+    <input type="text" name="usuario_id" id="usuario_id">
+    <input type="submit" name="dato" value="Buscar">
+
+    </form>
+    
+    <?php
+
+        
+    }
 
 if($_POST['create']){
     ?>

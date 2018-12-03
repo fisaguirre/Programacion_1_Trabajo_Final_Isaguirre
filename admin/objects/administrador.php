@@ -62,6 +62,23 @@ class Admin{
 
         }
 
+        function search(){
+
+            //$query="SELECT * FROM " . $this->table_name . " WHERE usuario_id=:usuario_id";
+            $query="SELECT usuario_id, nombre, rol, created, updated FROM " . $this->table_name . " WHERE usuario_id=:usuario_id";
+
+            $stmt=$this->conn->prepare($query);
+
+            $stmt->bindParam(":usuario_id",$this->usuario_id);
+
+            $stmt->execute();
+            return $stmt;
+
+
+
+            
+        }
+
 
 
         function create(){

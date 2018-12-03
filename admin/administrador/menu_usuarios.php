@@ -23,6 +23,11 @@ if($_SESSION['admin']!=1){
 <input type="submit" name="read" value="Leer Registros">
 </form>
 
+
+  <form action="usuarios/menu_crud.php" method="POST">
+  <input type="submit" name="search" value="Buscar Registro">
+  </form>
+
   <form action="usuarios/menu_crud.php" method="POST">
   <input type="submit" name="create" value="Crear Usuario">
   </form>

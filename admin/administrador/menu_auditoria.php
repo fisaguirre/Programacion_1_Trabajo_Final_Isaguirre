@@ -9,8 +9,6 @@
   </head>
   <body>
 
-  <form action="administracion_usuarios.php" method="POST">
-
 <?php
 
 
@@ -23,13 +21,13 @@ if($_SESSION['admin']=0){
 
 
 ?>
+
+<form action="administracion_usuarios.php" method="POST">
 <input type="submit" value="Usuarios">
 
   <form action="administracion_auditoria.php" method="POST">
-
+  <input type="submit" value="Auditoria">
 <?php
-echo "<br>";
-
 
 
 //registrar usuarios
@@ -39,7 +37,8 @@ echo "<br>";
 //auditoria search
 
 ?>
-<input type="submit" value="Auditoria">
+
+
 
 
 

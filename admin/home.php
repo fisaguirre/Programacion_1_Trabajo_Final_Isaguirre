@@ -9,27 +9,21 @@
   </head>
   <body>
 
-  <form action="administracion_usuarios.php" method="POST">
-
 <?php
 
 
 if($_SESSION['admin']!=1){
     header('Location: login.html');
 }
-if($_SESSION['admin']=0){
-    header('Location: usuario.php');
-}
-
 
 ?>
+
+<form action="administrador/menu_usuarios.php" method="POST">
 <input type="submit" value="Usuarios">
 
-  <form action="administracion_auditoria.php" method="POST">
-
+  <form action="/administrador/menu_auditoria.php" method="POST">
+  <input type="submit" value="Auditoria">
 <?php
-echo "<br>";
-
 
 
 //registrar usuarios
@@ -39,7 +33,8 @@ echo "<br>";
 //auditoria search
 
 ?>
-<input type="submit" value="Auditoria">
+
+
 
 
 

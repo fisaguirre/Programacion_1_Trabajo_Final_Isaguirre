@@ -1,8 +1,11 @@
 <?php session_start() ?>
+
 <?php
+
+
 include_once '../config/database.php';
 
-include_once 'administrador.php';
+include_once 'objects/administrador.php';
 
 
 $a=$_POST['usuario'];
@@ -18,26 +21,13 @@ $existe=$admin->verificar($a,$b);
 if($existe && password_verify($b, $admin->clave)){
     if( ($admin->rol)=='administrador') {
         $_SESSION['admin']=1;
-        echo "pass correcta y es admin";
-        header('Location: menu.php');
+        header('Location: home.php');
     }else{
         $_SESSION['admin']=0;
-        echo "es usuario";
-        header('Location: usuario.php');
+        header('Location: login.html');
     }
 }
-/*
-if( ($existe && password_verify($b, $admin->clave)) ) {
-    echo "<br>";
-    echo "todo bien";
-    echo "<br>";
 
-
-}else{
-    echo "<br>";
-    echo "todo mal";
-    echo "<br>";
-}*/
 
 
 ?>

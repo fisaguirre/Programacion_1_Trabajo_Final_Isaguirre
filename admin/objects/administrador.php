@@ -112,9 +112,11 @@ class Admin{
 
             $stmt=$this->conn->prepare($query);
 
+            $this->usuario_id=strip_tags($this->usuario_id);
+            
             $stmt->bindParam(":usuario_id",$this->usuario_id);
 
-            if($stmt->execte()){
+            if($stmt->execute()){
                 return true;
             }else{
                 return false;

@@ -11,25 +11,58 @@ include '../usuario/validate_token.php';
 if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
     if( isset($_GET['key']) ) {
         include 'search.php';
-        $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/read.php/';
+      //  $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/read.php/';
+        $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+     $nuevo=parse_url($url);
+     if(isset($nuevo["query"])){
+        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+     }else{
+        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].$nuevo["query"];
+     }
     }else{
         include 'read.php';
-        $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/read.php/';
+     //   $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/read.php/';
+        $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+     $nuevo=parse_url($url);
+     if(isset($nuevo["query"])){
+        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+     }else{
+        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].$nuevo["query"];
+     }
     }
     
 }
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
     include 'create.php';
-    $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/create.php/';
+  //  $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/create.php/';
+    $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+     $nuevo=parse_url($url);
+     if(isset($nuevo["query"])){
+        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+     }else{
+        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+     }
 }
 if($_SERVER['REQUEST_METHOD']==='PUT'){
     include 'update.php';
-    $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/update.php/';
+ //   $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/update.php/';
+    $nuevo=parse_url($url);
+     if(isset($nuevo["query"])){
+        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+     }else{
+        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+     }
 }
 if($_SERVER['REQUEST_METHOD']==='DELETE'){
     include 'delete.php';
-    $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/delete.php/';
+ //   $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/delete.php/';
+    $nuevo=parse_url($url);
+     if(isset($nuevo["query"])){
+        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+     }else{
+        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+     }
 }
 
 $time = microtime();

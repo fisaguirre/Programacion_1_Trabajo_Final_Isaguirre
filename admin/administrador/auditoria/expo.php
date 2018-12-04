@@ -70,6 +70,13 @@ for($i=0;$i<$cantidad;$i++){
     echo "<br>";
   }
 }
+/*
+for($i=0;$i<$cantidad;$i++){
+    $arr[$i]=explode(",",$arr[$i]);
+    echo "<br>";
+}
+*/
+
      for($e=0;$e<$cantidad;$e++){
       fwrite($archivo,' '.$arr[$e].PHP_EOL);
      }

@@ -10,6 +10,7 @@ if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
     if( isset($_GET['key']) ) {
         include 'search.php';
      //   $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/read.php/';
+     $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         $nuevo=parse_url($url);
      if(isset($nuevo["query"])){
         $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
@@ -19,6 +20,7 @@ if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
     }else{
         include 'read.php';
    //     $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/read.php/';
+   $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         $nuevo=parse_url($url);
      if(isset($nuevo["query"])){
         $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
@@ -31,6 +33,7 @@ if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
 if($_SERVER['REQUEST_METHOD']==='POST'){
     include 'create.php';
    // $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/create.php/';
+   $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $nuevo=parse_url($url);
      if(isset($nuevo["query"])){
         $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
@@ -41,6 +44,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 if($_SERVER['REQUEST_METHOD']==='PUT'){
     include 'update.php';
     //$endpoint='http://localhost/2018/Trabajo_Final/vehiculo/update.php/';
+    $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $nuevo=parse_url($url);
      if(isset($nuevo["query"])){
         $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
@@ -51,6 +55,7 @@ if($_SERVER['REQUEST_METHOD']==='PUT'){
 if($_SERVER['REQUEST_METHOD']==='DELETE'){
     include 'delete.php';
   //  $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/delete.php/';
+  $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $nuevo=parse_url($url);
      if(isset($nuevo["query"])){
         $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];

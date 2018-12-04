@@ -23,7 +23,8 @@ if(
     !empty($data->patente) &&
     !empty($data->anho_patente) &&
     !empty($data->marca) &&
-    !empty($data->modelo)
+    !empty($data->modelo) && 
+    !empty($data->sistema_id)
 ){
 $vehiculo->patente=$data->patente;
 $vehiculo->anho_patente=$data->anho_patente;
@@ -31,6 +32,8 @@ $vehiculo->anho_fabricacion=$data->anho_fabricacion;
 $vehiculo->marca=$data->marca;
 $vehiculo->modelo=$data->modelo;
 $vehiculo->created=date('Y-m-d H:i:s');
+
+$vehiculo->sistema_id=$data->sistema_id;
 
 
 if($vehiculo->create())

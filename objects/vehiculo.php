@@ -20,6 +20,11 @@ class Vehiculo{
     public $created;
     public $updated;
 
+    public $sistema_id;
+    //public $sistema_id;
+
+
+
     public function __construct($conn){
         $this->conn = $conn;
     }
@@ -40,9 +45,9 @@ class Vehiculo{
 
     function create()
     {
+        //query para crear vehiculo
         $query="INSERT INTO " . $this->table_name . " SET patente=:patente, anho_patente=:anho_patente, anho_fabricacion=:anho_fabricacion,
         marca=:marca, modelo=:modelo, created=:created";
-
         $stmt=$this->conn->prepare($query);
 
         $this->patente=strip_tags($this->patente);
@@ -52,7 +57,6 @@ class Vehiculo{
         $this->modelo=strip_tags($this->modelo);
         $this->created=strip_tags($this->created);
 
-
         $stmt->bindParam(":patente",$this->patente);
         $stmt->bindParam(":anho_patente",$this->anho_patente);
         $stmt->bindParam(":anho_fabricacion",$this->anho_fabricacion);
@@ -60,11 +64,55 @@ class Vehiculo{
         $stmt->bindParam(":modelo",$this->modelo);
         $stmt->bindParam(":created",$this->created);
 
-        if($stmt->execute())
-        {
-            return true;
+
+        //query para seleccionar vehiculo_id
+        $query_select="SELECT vehiculo_id FROM " . $this->table_name . " WHERE patente=:patente";
+        $stmt_select=$this->conn->prepare($query_select);
+
+        $stmt_select->bindParam(":patente",$this->patente);
+
+        //query para relacionar vehiculo con transporte
+        $query_sistema="INSERT INTO " . $this->table_sistema . " SET vehiculo_id=:vehiculo_id, sistema_id=:sistema_id, created=:created";
+        $stmt_sistema=$this->conn->prepare($query_sistema);
+        
+        $this->vehiculo_id=strip_tags($this->vehiculo_id);
+        //$this->sistema_id=strip_tags($this->sistema_id);
+
+        $stmt_sistema->bindParam(":vehiculo_id",$this->vehiculo_id);
+      //  $stmt_sistema->bindParam(":sistema_id",$this->sistema_id);
+        $stmt_sistema->bindParam(":created",$this->created);
+
+        
+        try{
+            $this->conn->beginTransaction();
+            $stmt->execute();
+            $stmt_select->execute();
+
+            $row_select= $stmt_select->fetch(PDO::FETCH_ASSOC);
+            $this->vehiculo_id=$row_select["vehiculo_id"];
+
+           // $stmt_sistema->bindParam(":sistema_id",$this->sistema_id);
+
+            for($i=0; $i<count($this->sistema_id); $i++){
+                $var = $this->sistema_id[$i];
+                echo json_encode($var);
+                $stmt_sistema->bindParam(":sistema_id", $var);
+                $stmt_sistema->execute();
+            }
+
+      //      $stmt_sistema->execute();
+            if($this->conn->commit()){
+                return true;
+             // echo json_encode(array("message"=>"asd"));
+             
+            }
+        }catch(Exception $e){
+            echo json_encode($e->getMessage());
+            $this->conn->rollback();
+            return false;
+            
         }
-        return false;
+
 
     }
 
@@ -135,9 +183,6 @@ function delete()
     
 
   }
-
-
-
 
 
 function search($keyword)

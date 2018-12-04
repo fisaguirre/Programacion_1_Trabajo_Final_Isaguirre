@@ -20,7 +20,8 @@ class Vehiculo{
     public $created;
     public $updated;
 
-    public $sistema_id;
+    //
+    public $sistema_id = [];
     //public $sistema_id;
 
 
@@ -122,7 +123,7 @@ class Vehiculo{
         //nunca poner FROM con UPDATE
         $query="UPDATE " . $this->table_name . " SET patente=:patente, anho_patente=:anho_patente, anho_fabricacion=:anho_fabricacion,
          marca=:marca, modelo=:modelo WHERE vehiculo_id=:vehiculo_id";
-         
+
          $stmt=$this->conn->prepare($query);
 
          //sacamos etiquetas
@@ -143,12 +144,84 @@ class Vehiculo{
          $stmt->bindParam(":modelo",$this->modelo);
          $stmt->bindParam(":vehiculo_id",$this->vehiculo_id);
 
-         if($stmt->execute()){
+
+       //  $query_borrar="DELETE FROM " . $this->table_sistema . " WHERE vehiculo_id LIKE ? AND NOT (sistema_id LIKE ? OR sistema_id LIKE ? OR sistema_id LIKE ?)";
+       
+       //  $stmt_borrar=$this->conn->prepare($query_borrar);
+        $stmt->execute();
+         $cantidad=count($this->sistema_id);
+         $i=0;
+          //$i=1;
+         while($i<$cantidad){
+             $query_bo="DELETE FROM " . $this->table_sistema . " WHERE vehiculo_id LIKE ? AND NOT sistema_id LIKE ? ";
+             echo json_encode($query_bo);
+             $stmt_bo=$this->conn->prepare($query_bo);
+             $stmt_bo->bindParam(1,$this->vehiculo_id);
+             $stmt_bo->bindParam(2,$this->sistema_id[$i]);
+
+         //    $var[$i]=$this->sistema_id[$i];
+
+            
+
+             $i++;
+             $stmt_bo->execute();
+         }
+         /*
+         $a=1;
+         while($a<$cantidad+1){
+            $query_insertar="INSERT INTO " . $this->table_sistema . " SET vehiculo_id LIKE ? AND sistema_id LIKE ? ";
+            $stmt_insertar=$this->conn->prepare($query_insertar);
+            if( ($this->sistema_id[$a])!=$var[$a] ){
+
+                $stmt_insertar->bindParam(1,$this->vehiculo_id);
+                $stmt_insertar->bindParam(2,$this->sistema_id[$a]);
+
+                $stmt_insertar->execute();
+
+            }
+            $a++;
+            
+         }*/
+         
+
+
+         return true;
+/*
+         try{
+            $this->conn->beginTransaction();
+            $stmt->execute();
+            $stmt_borrar->bindParam(2,$this->sistema_id[0]);
+            $stmt_borrar->bindParam(3,$this->sistema_id[1]);
+            $stmt_borrar->bindParam(4,$this->sistema_id[2]);
+            $stmt_borrar->execute();
+            if($this->conn->commit()){
+                return true;
+            }
+          }catch(Exception $e){
+            echo json_encode($e->getMessage());
+            $this->conn->rollBack();
+            return false;
+          }
+
+*/
+
+         
+
+         /*
+         for($i=1; $i<count($this->sistema_id); $i++){
+            $var = $this->sistema_id[$i];
+            echo json_encode($var);
+            $stmt_borrar->bindParam("[$i]", $var);
+            $stmt_borrar->execute();
+        }*/
+         
+/*
+         if($stmt->execute() && $stmt_borrar->execute()){
             return true;
         }
         
         return false;
-        
+        */
 
     }
 
@@ -158,14 +231,13 @@ function delete()
 {
 
     $query_sistema= "DELETE FROM " . $this->table_sistema . " WHERE vehiculo_id=:vehiculo_id";
-    $query="DELETE FROM " . $this->table_name . " WHERE vehiculo_id=:vehiculo_id";
-    $query_chofer="DELETE FROM " . $this->table_chofer . " WHERE vehiculo_id=:vehiculo_id";
-
-
     $stmt_sistema=$this->conn->prepare($query_sistema);
-    $stmt=$this->conn->prepare($query);
+
+    $query_chofer="DELETE FROM " . $this->table_chofer . " WHERE vehiculo_id=:vehiculo_id";
     $stmt_chofer=$this->conn->prepare($query_chofer);
 
+    $query="DELETE FROM " . $this->table_name . " WHERE vehiculo_id=:vehiculo_id";
+    $stmt=$this->conn->prepare($query);
     
     $this->vehiculo_id=strip_tags($this->vehiculo_id);
 
@@ -213,10 +285,6 @@ function search($keyword)
  
 
 }
-
-
-
-
 
 }
 

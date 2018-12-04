@@ -25,6 +25,8 @@ $vehiculo->anho_fabricacion=$data->anho_fabricacion;
 $vehiculo->marca=$data->marca;
 $vehiculo->modelo=$data->modelo;
 
+$vehiculo->sistema_id=$data->sistema_id;
+
 
 if($vehiculo->update())
 {

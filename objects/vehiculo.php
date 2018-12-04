@@ -149,41 +149,72 @@ class Vehiculo{
        
        //  $stmt_borrar=$this->conn->prepare($query_borrar);
         $stmt->execute();
+        
+        //para seleccionar los que tengo en este momento en la tabla y despues los verifico si existen
+        $query_select="SELECT sistema_id FROM " . $this->table_sistema . " WHERE vehiculo_id LIKE ? ";
+        $stmt_select=$this->conn->prepare($query_select);
+        $stmt_select->bindParam(1,$this->vehiculo_id);
+
+        $stmt_select->execute();
+        $c=0;
+        $be=[];
+        while($row=$stmt_select->fetch(PDO::FETCH_ASSOC)){
+            foreach($row as $fila){
+                $be[$c]=$fila;
+              //  echo json_encode($be[$c]);
+            }
+            $c++;
+        }
+
+
+          //para borrar los que no ingreso por array
          $cantidad=count($this->sistema_id);
          $i=0;
           //$i=1;
          while($i<$cantidad){
              $query_bo="DELETE FROM " . $this->table_sistema . " WHERE vehiculo_id LIKE ? AND NOT sistema_id LIKE ? ";
-             echo json_encode($query_bo);
              $stmt_bo=$this->conn->prepare($query_bo);
              $stmt_bo->bindParam(1,$this->vehiculo_id);
              $stmt_bo->bindParam(2,$this->sistema_id[$i]);
-
-         //    $var[$i]=$this->sistema_id[$i];
-
-            
-
+             $var[$i]=$this->sistema_id[$i];
              $i++;
              $stmt_bo->execute();
          }
-         /*
-         $a=1;
-         while($a<$cantidad+1){
+         
+
+
+$query_insert = "INSERT IGNORE INTO " . $this->table_sistema . " SET vehiculo_id=:vehiculo_id, sistema_id=:sistema_id, created=:created";
+$stmt_insert=$this->conn->prepare($query_insert);
+
+$stmt_insert->bindParam(":vehiculo_id", $this->vehiculo_id);
+$stmt_insert->bindParam(":created", $this->created);
+
+for($i=0; $i<count($this->sistema_id); $i++){
+    $aux = $this->sistema_id[$i];
+    $stmt_insert->bindParam(":sistema_id", $aux);
+    $stmt_insert->execute();
+    }
+    /*
+         //para insertar los nuevos del parametors del array que mando
+         $num=count($this->sistema_id);
+         $a=0;
+         while($a<$num){
             $query_insertar="INSERT INTO " . $this->table_sistema . " SET vehiculo_id LIKE ? AND sistema_id LIKE ? ";
             $stmt_insertar=$this->conn->prepare($query_insertar);
-            if( ($this->sistema_id[$a])!=$var[$a] ){
+            echo json_encode($a);
+            if( ($this->sistema_id[$a])!=$be[$a] ) {
+                echo json_encode($a);
 
                 $stmt_insertar->bindParam(1,$this->vehiculo_id);
                 $stmt_insertar->bindParam(2,$this->sistema_id[$a]);
-
                 $stmt_insertar->execute();
 
             }
             $a++;
             
-         }*/
+         }
          
-
+*/
 
          return true;
 /*

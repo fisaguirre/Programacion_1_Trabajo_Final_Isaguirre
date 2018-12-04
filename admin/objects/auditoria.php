@@ -12,6 +12,9 @@ class auditoria{
     public $response_time;
     public $endpoint;
     public $created;
+
+    public $primera_fecha;
+    public $segunda_fecha;
     
 
 
@@ -29,6 +32,23 @@ class auditoria{
         $stmt->execute();
 
         return $stmt;
+
+    }
+
+    function export(){
+
+        $query = "SELECT * FROM (" . $this->table_name . ") WHERE fecha_acceso BETWEEN CAST(? AS DATE) AND CAST(? AS DATE) ORDER BY created DESC";
+
+
+        $stmt=$this->conn->prepare($query);
+
+        $stmt->bindParam(1,$this->primera_fecha);
+        $stmt->bindParam(2,$this->segunda_fecha);
+
+        $stmt->execute();
+
+        return $stmt;
+
 
     }
 

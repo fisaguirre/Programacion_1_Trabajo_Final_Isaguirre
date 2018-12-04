@@ -23,24 +23,10 @@ if($_SESSION['admin']!=1){
 <input type="submit" value="Usuarios">
 </form>
 
-  <form action="administrador/menu_auditoria.php" method="POST">
-  <input type="submit" value="Auditoria">
+<form action="administrador/menu_auditoria.php" method="POST">
+<input type="submit" value="Auditoria">
+
 </form>
-<?php
-
-
-//registrar usuarios
-//borrar usuarios
-//modificar usuarios
-//read usuarios search
-//auditoria search
-
-?>
-
-
-
-
-
 
   </body>
 </html>

@@ -17,8 +17,8 @@ if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
      if(isset($nuevo["query"])){
         $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
      }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].$nuevo["query"];
-     }
+      $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+   }
     }else{
         include 'read.php';
      //   $endpoint='http://localhost/2018/Trabajo_Final/sistema_transporte/read.php/';
@@ -27,8 +27,8 @@ if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
      if(isset($nuevo["query"])){
         $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
      }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].$nuevo["query"];
-     }
+      $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+   }
     }
     
 }

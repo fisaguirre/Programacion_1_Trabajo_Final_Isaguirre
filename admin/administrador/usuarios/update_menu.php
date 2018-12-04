@@ -54,7 +54,7 @@ while($fila=$stmt->fetch(PDO::FETCH_ASSOC)){
 
     ?>
 
-    <input type="submit" name="datos" value="Crear Usuario">
+    <input type="submit" name="datos" value="Guardar Cambios">
         
     </form>
 

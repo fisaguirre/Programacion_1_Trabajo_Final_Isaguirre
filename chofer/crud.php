@@ -19,8 +19,8 @@ if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
      if(isset($nuevo["query"])){
         $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
      }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].$nuevo["query"];
-     }
+      $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+   }
        // exit;
     }else{
         include 'read.php';
@@ -30,8 +30,8 @@ if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
      if(isset($nuevo["query"])){
         $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
      }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].$nuevo["query"];
-     }
+      $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+   }
      //sino hacer un explode de parse_url de la url y despues ver cual es crud.php sacarlo y poner el metodo y a continuacion
      //ponerle el query
        

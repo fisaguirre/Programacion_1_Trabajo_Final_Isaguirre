@@ -114,8 +114,10 @@ class Admin{
 
             $stmt->bindParam(":usuario_id",$this->usuario_id);
             $stmt->bindParam(":nombre",$this->nombre);
-            $stmt->bindParam(":clave",$this->clave);
             $stmt->bindParam(":rol",$this->rol);
+
+            $clave_hash = password_hash($this->clave,PASSWORD_BCRYPT);
+            $stmt->bindParam(':clave', $clave_hash);
 
             if($stmt->execute()){
                 return true;

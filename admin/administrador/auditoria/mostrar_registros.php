@@ -1,3 +1,14 @@
+<html>
+<head>
+<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/create.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/table_read.css" rel="stylesheet" type="text/css"/>
+<title></title>
+</head>
+<body>
+<table border='1' id="customers">
+
+
 <?php session_start() ?>
 
 <?php 
@@ -7,12 +18,6 @@ if($_SESSION['admin']!=1){
 }
 ?>
 
-<html>
-<head>
-<title></title>
-</head>
-<body>
-<table border='1'>
 
 <?php
 
@@ -61,16 +66,29 @@ if($num>0){
     
 }
 
-
-
 ?>
-
 
 </table>
 
-<a href="../../home.php">Volver al menu</a>
-<a href="../../login.html">Volver al login</a>
 
+    <div class="container">
+
+<div class="clearfix">
+
+      <button type="button" onClick='location.href="../menu_auditoria.php"'>Menu Auditoria</button>
+      <button type="button" onClick='location.href="../../home.php"'>HOME</button>
+      <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+      
+    </div>
+</div>
+
+<?php
+if($_GET['button1']){logout();}
+function logout(){
+session_unset();
+header('Location: ../../login.html');
+}
+?>
 
 </body>
 </html>

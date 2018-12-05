@@ -1,6 +1,8 @@
-<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/create.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/table_read.css" rel="stylesheet" type="text/css"/>
     <meta charset="utf-8">
     <title></title>
   </head>
@@ -49,8 +51,20 @@ $arr_audi['records']=array();
 if($cantidad>0){
   $archivo=fopen('registro.txt',"w+");
 
-     echo "se creo el archivo";
-     while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+?>
+  <form action="expo.php" method="POST" style="border:1px solid #ccc">
+  <div class="container">
+    <h1>Se exporto con exito</h1>
+    <hr>
+
+    <div class="clearfix">
+    </div>
+  </div>
+</form>     
+
+<?php
+
+while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
       extract($row);
       $array=array(
         "auditoria_id"=>$auditoria_id,
@@ -85,7 +99,25 @@ for($i=0;$i<$cantidad;$i++){
      
 
 }else{
-  echo "no se creo";
+  ?>
+
+
+
+<form action="expo.php" method="POST" style="border:1px solid #ccc">
+  <div class="container">
+    <h1>No se exporto</h1>
+    <hr>
+
+    <div class="clearfix">
+    <button type="submit" name="dato" class="signupbtn">Exportar Auditoria</button>
+    </div>
+  </div>
+</form>
+
+
+<?php
+
+
 }
 
 ?>
@@ -94,7 +126,27 @@ for($i=0;$i<$cantidad;$i++){
 
 
 </table>
-<a href="descargar.php">des</a>
+
+
+    <div class="container">
+
+<div class="clearfix">
+
+      <button type="button" onClick='location.href="../menu_auditoria.php"'>Menu Auditoria</button>
+      <button type="button" onClick='location.href="../../home.php"'>HOME</button>
+      <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+      
+    </div>
+</div>
+
+<?php
+if($_GET['button1']){logout();}
+function logout(){
+session_unset();
+header('Location: ../../login.html');
+}
+?>
+
   </body>
 </html>
 

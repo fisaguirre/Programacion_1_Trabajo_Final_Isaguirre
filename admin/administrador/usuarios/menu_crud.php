@@ -3,9 +3,10 @@
 <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
 <link href="../../css/create.css" rel="stylesheet" type="text/css"/>
 <link href="../../css/table_read.css" rel="stylesheet" type="text/css"/>
-
 <title></title>
 </head>
+<body>
+<table border='1' id="customers">
 
 <?php session_start(); ?>
 
@@ -15,12 +16,6 @@ if($_SESSION['admin']!=1){
   header('Location: ../../login.html');
 }
 ?>
-<html>
-<head>
-<title></title>
-</head>
-<body>
-<table border='1' id="customers">
 
 <?php
 

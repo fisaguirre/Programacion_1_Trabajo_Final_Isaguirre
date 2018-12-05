@@ -12,7 +12,7 @@
 <?php
 
 if($_SESSION['admin']!=1){
-    header('Location: login.html');
+    header('Location: ../../login.html');
 }
 
 ?>

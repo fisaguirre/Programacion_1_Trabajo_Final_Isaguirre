@@ -3,7 +3,7 @@
 <?php 
 
 if($_SESSION['admin']!=1){
-  header('Location: ../../login.html');
+  header('Location: ../login.html');
 }
 ?>
 <!DOCTYPE html>
@@ -13,6 +13,22 @@ if($_SESSION['admin']!=1){
     <title></title>
   </head>
   <body>
+
+
+<div class="row">
+  <div class="col-lg-6">
+    <button id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+
+  </div>
+</div>
+<?php
+if($_GET['button1']){logout();}
+function logout(){
+session_unset();
+header('Location: ../login.html');
+}
+?>
+
 
 
 <form action="usuarios/menu_crud.php" method="POST">

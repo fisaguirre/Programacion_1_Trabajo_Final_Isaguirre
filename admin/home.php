@@ -28,5 +28,21 @@ if($_SESSION['admin']!=1){
 
 </form>
 
-  </body>
+
+<div class="row">
+  <div class="col-lg-6">
+    <button id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+
+  </div>
+</div>
+<?php
+if($_GET['button1']){logout();}
+function logout(){
+session_unset();
+header('Location: login.html');
+}
+?>
+ 
+
+</body>
 </html>

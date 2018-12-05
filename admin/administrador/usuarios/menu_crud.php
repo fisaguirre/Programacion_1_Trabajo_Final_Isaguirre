@@ -1,7 +1,9 @@
 <html>
 <head>
 <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/create.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/create.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/table_read.css" rel="stylesheet" type="text/css"/>
+
 <title></title>
 </head>
 
@@ -18,7 +20,7 @@ if($_SESSION['admin']!=1){
 <title></title>
 </head>
 <body>
-<table border='1'>
+<table border='1' id="customers">
 
 <?php
 
@@ -66,7 +68,6 @@ if($num>0){
 }else{
     echo "hola";
 }
-    
 }
 
 
@@ -101,18 +102,20 @@ if($_POST['create']){
     <input type="text" placeholder="Ingrese Nombre" name="nombre" required>
 
     <label for="clave"><b>Clave</b></label>
-    <input type="password" placeholder="Ingrese Clave" name="clave" required>
-
-    <label for="rol"><b>Rol</b></label>
-    <input type="text" placeholder="Ingrese Rol" name="rol" required>
-    
+    <input type="password" placeholder="Ingrese Clave" name="clave" required>  
+  
     <label>
-      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+        <input type="radio" name="rol" value="administrador">
+        <span>Administrador</span>
+    </label>
+
+    <label>
+    <input type="radio" name="rol" value="usuario">
+    <span>Usuario</span>
     </label>
     
     <div class="clearfix">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Crear usuario</button>
+    <button type="submit" class="signupbtn">Crear usuario</button>
     </div>
   </div>
 </form>
@@ -217,15 +220,15 @@ if($num>0){
 ?>
 </table>
 
-<a href="../menu_usuarios.php">Volver al menu</a>
+    <div class="container">
 
-
-<div class="row">
-  <div class="col-lg-6">
-    <button id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
-
-  </div>
+<div class="clearfix">
+      <button type="button" onClick='location.href="../menu_usuarios.php"'>Volver al menu</button>
+      <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+      
+    </div>
 </div>
+
 
 <?php
 if($_GET['button1']){logout();}

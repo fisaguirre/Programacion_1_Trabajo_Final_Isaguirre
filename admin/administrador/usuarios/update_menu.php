@@ -1,3 +1,10 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+
 <?php session_start(); ?>
 
 <?php 
@@ -6,14 +13,38 @@ if($_SESSION['admin']!=1){
   header('Location: ../../login.html');
 }
 ?>
-<html>
-<head>
-<title></title>
-</head>
-<body>
 
 
-    <form action="update.php" method="POST">
+<form action="update.php" method="POST" style="border:1px solid #ccc">
+  <div class="container">
+    <h1>Modificar Usuario</h1>
+    <p>Completa el formulario para modificar un usuario.</p>
+    <hr>
+
+    <label for="nombre"><b>Nombre</b></label>
+    <input type="text" placeholder="Ingrese Nombre" name="nombre" required>
+
+    <label for="clave"><b>Clave</b></label>
+    <input type="password" placeholder="Ingrese Clave" name="clave" required>  
+  
+    <label>
+        <input type="radio" name="rol" value="administrador">
+        <span>Administrador</span>
+    </label>
+
+    <label>
+    <input type="radio" name="rol" value="usuario">
+    <span>Usuario</span>
+    </label>
+    
+    <div class="clearfix">
+    <button type="submit" class="signupbtn">Crear usuario</button>
+    </div>
+  </div>
+</form>
+
+
+
 
 <?php
 

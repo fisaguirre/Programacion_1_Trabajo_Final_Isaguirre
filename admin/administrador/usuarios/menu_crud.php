@@ -75,12 +75,19 @@ if($_POST['search']){
 
     ?>
 
-    <form action="search.php" method="POST">
-
+    <form action="search.php" method="POST" style="border:1px solid #ccc">
+  <div class="container">
+    <h1>Buscar Usuario</h1>
+    <p>Ingrese el id del usuario que quiera buscar.</p>
+    <hr>
     <input type="text" name="usuario_id" id="usuario_id">
-    <input type="submit" name="dato" value="Buscar">
 
-    </form>
+    <button type="submit" name="dato" value="Buscar" class="signupbtn">Buscar Registro</button>
+
+    <div class="clearfix">
+    </div>
+  </div>
+</form>
     
     <?php
 
@@ -223,7 +230,8 @@ if($num>0){
     <div class="container">
 
 <div class="clearfix">
-      <button type="button" onClick='location.href="../menu_usuarios.php"'>Volver al menu</button>
+      <button type="button" onClick='location.href="../menu_usuarios.php"'>Menu Usuarios</button>
+      <button type="button" onClick='location.href="../../home.php"'>HOME</button>
       <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
       
     </div>

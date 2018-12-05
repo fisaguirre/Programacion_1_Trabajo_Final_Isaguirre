@@ -1,7 +1,9 @@
-
-<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="css/create.css" rel="stylesheet" type="text/css"/>
+<link href="css/table_read.css" rel="stylesheet" type="text/css"/>
     <meta charset="utf-8">
     <title></title>
   </head>
@@ -14,23 +16,35 @@ if($_SESSION['admin']!=1){
 }
 
 ?>
+<div class="container">
+<h1>Home</h1>
+<hr>
+<div class="clearfix">
+
+
 
 <form action="administrador/menu_usuarios.php" method="POST">
-<input type="submit" value="Usuarios">
-</form>
+
+  <button type="submit" value="s" class="signupbtn" name="Usuarios">Usuarios</button>
+
+    
+
+  </form>
 
 <form action="administrador/menu_auditoria.php" method="POST">
-<input type="submit" value="Auditoria">
 
-</form>
+  <button type="submit" value="s" class="signupbtn" name="Auditoria">Auditoria</button>
 
+  
 
-<div class="row">
-  <div class="col-lg-6">
-    <button id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
-
-  </div>
+  </form>
+      <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
 </div>
+    </div>
+
+
+
+    
 <?php
 if($_GET['button1']){logout();}
 function logout(){

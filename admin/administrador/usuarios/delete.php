@@ -1,3 +1,13 @@
+<html>
+<head>
+
+<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/create.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/table_read.css" rel="stylesheet" type="text/css"/>
+<title></title>
+</head>
+<body>
+
 <?php session_start(); ?>
 
 <?php 
@@ -6,11 +16,6 @@ if($_SESSION['admin']!=1){
   header('Location: ../../login.html');
 }
 ?>
-<html>
-<head>
-<title></title>
-</head>
-<body>
 
 
 <?php
@@ -28,33 +33,45 @@ $admin->usuario_id=$_GET['usuario_id'];
 if(($admin->usuario_id)!=NULL){
     if($admin->delete())
 {
-    echo "se borro";
+    ?>
+      <div class="container">
+      <h1>Usuario borrado correctamente</h1>
+    </div>
+   
 
-    echo "<button type=\"submit\">Regresar a Login";
-    echo "<button type=\"submit\">Regresar a Menu de borrar";
-    echo "<button type=\"submit\">Regresar al Menu de administrador";
+<form action="create.php" method="POST" style="border:1px solid #ccc">
+<div class="container">
+  <div class="clearfix">
+  <button type="button" onClick='location.href="../menu_usuarios.php"'>Menu Usuarios</button>
+      <button type="button" onClick='location.href="../../home.php"'>HOME</button>
+    <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Cerrar Sesion</button>
+  </div>
+</div>
+</form>
 
+<?php
     }else{
-        echo "no se borro";
+        ?>
+      <div class="container">
+      <h1>Usuario no borrado</h1>
+    </div>
+    <?php
     }
 }
 else{
-    echo "no se encontro nada";
+    ?>
+    <div class="container">
+    <h1>No se encontro nada</h1>
+  </div>
+  <?php
 }
 
 
 
 
  ?>
-<a href="../menu_usuarios.php">Volver al menu</a>
 
 
-<div class="row">
-  <div class="col-lg-6">
-    <button id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
-
-  </div>
-</div>
 <?php
 if($_GET['button1']){logout();}
 function logout(){

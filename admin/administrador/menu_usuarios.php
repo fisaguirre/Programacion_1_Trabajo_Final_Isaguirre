@@ -1,3 +1,13 @@
+<html lang="en" dir="ltr">
+  <head>
+  <link href="../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="../css/create.css" rel="stylesheet" type="text/css"/>
+<link href="../css/table_read.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
 <?php session_start() ?>
 
 <?php 
@@ -6,21 +16,40 @@ if($_SESSION['admin']!=1){
   header('Location: ../login.html');
 }
 ?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+
+<form action="usuarios/menu_crud.php" method="POST">
+
+<div class="container">
+
+    <h1>Menu Usuario</h1>
+    <hr>
+<div class="clearfix">
+<button type="submit" name="read" value="read" class="signupbtn">Leer Registros</button>
+
+  <button type="submit" value="search" name="search">Buscar Registro</button>
+
+  <button type="submit" value="read" class="signupbtn" name="create">Crear Usuario</button>
+
+  <button type="submit" value="delete" class="signupbtn" name="delete">Borrar Usuario</button>
 
 
-<div class="row">
-  <div class="col-lg-6">
-    <button id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+  <button type="submit" value="update" class="signupbtn" name="update">Modificar Usuario</button>
 
-  </div>
-</div>
+      <button type="button" onClick='location.href="menu_usuarios.php"'>Menu Usuarios</button>
+      <button type="button" onClick='location.href="../home.php"'>HOME</button>
+      <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+      
+
+      
+    </div>
+    </div>
+
+  </form>
+
+
+
+
+
 <?php
 if($_GET['button1']){logout();}
 function logout(){
@@ -29,30 +58,6 @@ header('Location: ../login.html');
 }
 ?>
 
-
-
-<form action="usuarios/menu_crud.php" method="POST">
-<input type="submit" name="read" value="Leer Registros">
-</form>
-
-
-  <form action="usuarios/menu_crud.php" method="POST">
-  <input type="submit" name="search" value="Buscar Registro">
-  </form>
-
-  <form action="usuarios/menu_crud.php" method="POST">
-  <input type="submit" name="create" value="Crear Usuario">
-  </form>
-
-
-  <form action="usuarios/menu_crud.php" method="POST">
-  <input type="submit" name="delete" value="Borrar Usuario">
-  </form>
-
-
-  <form action="usuarios/menu_crud.php" method="POST">
-  <input type="submit" name="update" value="Modificar Usuario">
-  </form>
 
 
   </body>

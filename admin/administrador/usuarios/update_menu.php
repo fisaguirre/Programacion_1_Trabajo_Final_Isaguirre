@@ -1,5 +1,8 @@
 <html>
 <head>
+<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/create.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/table_read.css" rel="stylesheet" type="text/css"/>
 <title></title>
 </head>
 <body>
@@ -14,37 +17,7 @@ if($_SESSION['admin']!=1){
 }
 ?>
 
-
-<form action="update.php" method="POST" style="border:1px solid #ccc">
-  <div class="container">
-    <h1>Modificar Usuario</h1>
-    <p>Completa el formulario para modificar un usuario.</p>
-    <hr>
-
-    <label for="nombre"><b>Nombre</b></label>
-    <input type="text" placeholder="Ingrese Nombre" name="nombre" required>
-
-    <label for="clave"><b>Clave</b></label>
-    <input type="password" placeholder="Ingrese Clave" name="clave" required>  
-  
-    <label>
-        <input type="radio" name="rol" value="administrador">
-        <span>Administrador</span>
-    </label>
-
-    <label>
-    <input type="radio" name="rol" value="usuario">
-    <span>Usuario</span>
-    </label>
-    
-    <div class="clearfix">
-    <button type="submit" class="signupbtn">Crear usuario</button>
-    </div>
-  </div>
-</form>
-
-
-
+<form action="update.php" method="POST">
 
 <?php
 
@@ -67,16 +40,47 @@ $var=$_GET['usuario_id'];
 while($fila=$stmt->fetch(PDO::FETCH_ASSOC)){
   foreach($fila as $fil){
     if($fila['usuario_id']==$var){
+      echo "<div class=\"container\">";
+      echo "<h1>Modificar Usuario</h1>";
+      echo "<p>Completa los casilleros</p>";
+      echo "<hr>";
       echo "<input type=\"hidden\" name=\"usuario_id\" value=\"$fila[usuario_id]\">";
-      echo "Nombre:";
-      echo "<input type=\"text\" name=\"nombre\" value=\"$fila[nombre]\">";
+      echo "<label for=\"nombre\"><b>Nombre</b></label>";
+      echo "<input type=\"text\" placeholder=\"Ingrese Nombre\" name=\"nombre\" value=\"$fila[nombre]\" required>";
       echo "<br>";
-      echo "Clave: ";
-      echo "<input type=\"text\" name=\"clave\" value=\"$fila[clave]\">";
+      echo "<label for=\"clave\"><b>Clave</b></label>";
+      echo "<input type=\"text\" placeholder=\"Ingrese Clave\" name=\"clave\" value=\"$fila[clave]\" required>";
       echo "<br>";
-      echo "Rol: ";
-      echo "<input type=\"text\" name=\"rol\" value=\"$fila[rol]\">";
-      echo "<br>";
+      echo "<label>";
+      if($fila['rol']=='administrador'){
+        echo "<input type=\"radio\" name=\"rol\" value=\"administrador\" checked>";
+      }else{
+        echo "<input type=\"radio\" name=\"rol\" value=\"administrador\">";
+      }
+      echo "<span>";
+      echo "Administrador";
+      echo "</span>";
+      echo "</label>";
+      echo "<label>";
+      if($fila['rol']=='usuario'){
+        echo "<input type=\"radio\" name=\"rol\" value=\"usuario\" checked>";
+      }else{
+        echo "<input type=\"radio\" name=\"rol\" value=\"usuario\">";
+      }
+      echo "<span>";
+      echo "Usuario";
+      echo "</span>";
+      echo "</label>";
+      echo "<div class=\"clearfix\">";
+      echo "<button type=\"submit\" class=\"signupbtn\">Guardar cambios</button>";
+      ?>
+      <button type="button" onClick='location.href="../menu_usuarios.php"'>Menu Usuarios</button>
+      <button type="button" onClick='location.href="../../home.php"'>HOME</button>
+      <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+      <?php
+      echo "</div>";
+      echo "</div>";
+
       break;
     }
   }
@@ -85,20 +89,11 @@ while($fila=$stmt->fetch(PDO::FETCH_ASSOC)){
 
     ?>
 
-    <input type="submit" name="datos" value="Guardar Cambios">
         
     </form>
 
 
-<a href="../menu_usuarios.php">Volver al menu</a>
 
-
-<div class="row">
-  <div class="col-lg-6">
-    <button id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
-
-  </div>
-</div>
 <?php
 if($_GET['button1']){logout();}
 function logout(){

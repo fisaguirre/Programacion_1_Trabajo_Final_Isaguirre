@@ -1,0 +1,5 @@
+ 285,jero,2018-12-05 13:07:02,localhost/2018/Trabajo_Final/vehiculo/crud.php/GET,2018-12-05 13:07:02
+ 286,jero,2018-12-05 13:07:02,localhost/2018/Trabajo_Final/vehiculo/crud.php/GET,2018-12-05 13:07:02
+ 283,jero,2018-12-05 13:07:01,localhost/2018/Trabajo_Final/vehiculo/crud.php/GET,2018-12-05 13:07:01
+ 284,jero,2018-12-05 13:07:01,localhost/2018/Trabajo_Final/vehiculo/crud.php/GET,2018-12-05 13:07:01
+ 279,jero,2018-12-05 13:03:35,localhost/2018/Trabajo_Final/vehiculo/crud.php/GET,2018-12-05 13:03:35

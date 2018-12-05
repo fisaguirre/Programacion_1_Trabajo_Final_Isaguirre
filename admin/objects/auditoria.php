@@ -37,7 +37,7 @@ class auditoria{
 
     function export(){
 
-        $query = "SELECT * FROM (" . $this->table_name . ") WHERE fecha_acceso BETWEEN CAST(? AS DATE) AND CAST(? AS DATE) ORDER BY created DESC";
+        $query = "SELECT * FROM (" . $this->table_name . ") WHERE fecha_acceso BETWEEN CAST(? AS DATE) AND CAST(? AS DATE) ORDER BY auditoria_id ASC";
 
 
         $stmt=$this->conn->prepare($query);

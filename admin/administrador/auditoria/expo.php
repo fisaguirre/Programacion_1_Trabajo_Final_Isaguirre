@@ -24,25 +24,30 @@ include_once '../../../config/database.php';
 $database=new Database();
 $db=$database->getConnection();
 $auditoria=new Auditoria($db);
+
 $auditoria->primera_fecha=$_POST['date1'];
 $auditoria->segunda_fecha=$_POST['date2'];
+
 $stmt=$auditoria->export();
 $cantidad=$stmt->rowCount();
+
 $arr_audi['records']=array();
+
+$file="registro.txt";
 if($cantidad>0){
-  $archivo=fopen('registro.txt',"w+");
+  $archivo=fopen($file,"w+");
+
+
 ?>
-  <form action="expo.php" method="POST" style="border:1px solid #ccc">
   <div class="container">
     <h1>Se exporto con exito</h1>
     <hr>
-
     <div class="clearfix">
     </div>
   </div>
-</form>     
 
 <?php
+
 while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
       extract($row);
       $array=array(
@@ -56,26 +61,23 @@ while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
      }
 for($i=0;$i<$cantidad;$i++){
   foreach($arr_audi['records'] as $fila){
-    $arr[$i]=implode(",",$arr_audi['records'][$i]);
+    $arr[$i]=implode(" ",$arr_audi['records'][$i]);
   }
 }
-/*
-for($i=0;$i<$cantidad;$i++){
-    $arr[$i]=explode(",",$arr[$i]);
-    echo "<br>";
-}
-*/
+
      for($e=0;$e<$cantidad;$e++){
-      fwrite($archivo,' '.$arr[$e].PHP_EOL);
+      fwrite($archivo,''.$arr[$e].','.PHP_EOL);
+      
      }
      fclose($archivo);
+     header('Location: descargar.php');
+
      
 }else{
   ?>
 
 
 
-<form action="expo.php" method="POST" style="border:1px solid #ccc">
   <div class="container">
     <h1>No se exporto</h1>
     <hr>
@@ -84,7 +86,6 @@ for($i=0;$i<$cantidad;$i++){
     <button type="submit" name="dato" class="signupbtn">Exportar Auditoria</button>
     </div>
   </div>
-</form>
 
 
 <?php

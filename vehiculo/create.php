@@ -47,9 +47,7 @@ if($_SERVER['HTTP_REFERER'] == "crud.php"){
 						echo json_encode(array("message"=>"no se creo"));
 				}
 		}else{
-				// set response code - 400 bad request
 				http_response_code(400);
-				// tell the user
 				echo json_encode(array("message" => "Faltan datos"));
 		}
 

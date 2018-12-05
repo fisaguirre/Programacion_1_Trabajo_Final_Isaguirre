@@ -1,5 +1,12 @@
+
 <?php
-header("Content-disposition: attachment; filename=registro.txt");
-header("Content-type: MIME");
-readfile("registro.txt");
+$file="registro.txt";
+if($file) {
+  header("Content-Type: application/force-download");
+  header("Content-Disposition: attachment; filename=".basename($file).";");
+  readfile($file);
+} else {
+ echo 'Archivo no encontrado';
+ }
+
 ?>

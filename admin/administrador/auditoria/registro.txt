@@ -1,5 +1,10 @@
- 285,jero,2018-12-05 13:07:02,localhost/2018/Trabajo_Final/vehiculo/crud.php/GET,2018-12-05 13:07:02
- 286,jero,2018-12-05 13:07:02,localhost/2018/Trabajo_Final/vehiculo/crud.php/GET,2018-12-05 13:07:02
- 283,jero,2018-12-05 13:07:01,localhost/2018/Trabajo_Final/vehiculo/crud.php/GET,2018-12-05 13:07:01
- 284,jero,2018-12-05 13:07:01,localhost/2018/Trabajo_Final/vehiculo/crud.php/GET,2018-12-05 13:07:01
- 279,jero,2018-12-05 13:03:35,localhost/2018/Trabajo_Final/vehiculo/crud.php/GET,2018-12-05 13:03:35
+287 jero 2018-12-05 15:46:56 localhost/2018/Trabajo_Final/sistema_transporte/crud.php/GET 2018-12-05 15:46:56,
+288 jero 2018-12-05 15:46:57 localhost/2018/Trabajo_Final/sistema_transporte/crud.php/GET 2018-12-05 15:46:57,
+289 jero 2018-12-05 15:46:58 localhost/2018/Trabajo_Final/sistema_transporte/crud.php/GET 2018-12-05 15:46:58,
+290 jero 2018-12-05 15:46:59 localhost/2018/Trabajo_Final/sistema_transporte/crud.php/GET 2018-12-05 15:46:59,
+291 jero 2018-12-05 15:46:59 localhost/2018/Trabajo_Final/sistema_transporte/crud.php/GET 2018-12-05 15:46:59,
+292 jero 2018-12-05 15:47:00 localhost/2018/Trabajo_Final/sistema_transporte/crud.php/GET 2018-12-05 15:47:00,
+293 jero 2018-12-05 15:47:00 localhost/2018/Trabajo_Final/sistema_transporte/crud.php/GET 2018-12-05 15:47:00,
+294 jero 2018-12-05 15:47:40 localhost/2018/Trabajo_Final/sistema_transporte/crud.php/GET 2018-12-05 15:47:40,
+295 jero 2018-12-05 15:47:40 localhost/2018/Trabajo_Final/sistema_transporte/crud.php/GET 2018-12-05 15:47:40,
+296 jero 2018-12-05 15:47:41 localhost/2018/Trabajo_Final/sistema_transporte/crud.php/GET 2018-12-05 15:47:41,

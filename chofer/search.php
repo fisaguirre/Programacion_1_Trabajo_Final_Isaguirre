@@ -1,73 +1,73 @@
 <?php
 
 if($_SERVER['HTTP_REFERER'] == "crud.php"){
-  
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET");
-header("Content-Type: application/json; charset=UTF-8");
 
-include_once '../config/database.php';
-//include_once '../config/core.php';
-include_once '../objects/chofer.php';
+		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Methods: GET");
+		header("Content-Type: application/json; charset=UTF-8");
 
-//creamos objetos de tipo base de datos y conectamos
-$database=new Database();
-$db=$database->getConnection();
+		include_once '../config/database.php';
+		//include_once '../config/core.php';
+		include_once '../objects/chofer.php';
 
-//creamos objeto chofer
-$chofer=new Chofer($db);
+		//creamos objetos de tipo base de datos y conectamos
+		$database=new Database();
+		$db=$database->getConnection();
 
-//obtenemos palabra clave
-$keyword=isset($_GET["key"]) ? $_GET["key"] : "";
-//$keyword2=isset($_GET["documento"]) ? $_GET["documento"] : "";
-//$keyword3=isset($_GET["nombre"]) ? $_GET["nombre"] : "";
-//$keyword4=isset($_GET["documento"]) ? $_GET["documento"] : "";
+		//creamos objeto chofer
+		$chofer=new Chofer($db);
 
-//$stmt=$chofer->search($keyword,$keyword2,$keyword3,$keyword4);
-$stmt=$chofer->search($keyword);
+		//obtenemos palabra clave
+		$keyword=isset($_GET["key"]) ? $_GET["key"] : "";
+		//$keyword2=isset($_GET["documento"]) ? $_GET["documento"] : "";
+		//$keyword3=isset($_GET["nombre"]) ? $_GET["nombre"] : "";
+		//$keyword4=isset($_GET["documento"]) ? $_GET["documento"] : "";
 
-
-$num=$stmt->rowCount();
+		//$stmt=$chofer->search($keyword,$keyword2,$keyword3,$keyword4);
+		$stmt=$chofer->search($keyword);
 
 
-if($num>0)
-{
-  $chofer_arr=array();
-  $chofer_arr["records"]=array();
+		$num=$stmt->rowCount();
 
 
-  //guardamos en $row los registros que vamos obteniendo de la base de datos del objeto chofer
-  while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+		if($num>0)
+		{
+				$chofer_arr=array();
+				$chofer_arr["records"]=array();
 
-    extract($row);
 
-    $chofer_item=array(
-      "chofer_id"=>$chofer_id,
-      "nombre"=>$nombre,
-      "apellido"=>$apellido,
-      "email"=>$email,
-      "documento"=>$documento,
-      "sistema_id"=>$sistema_id,
-      "vehiculo_id"=>$vehiculo_id,
-      "created"=>$created,
-      "updated"=>$updated
-    );
+				//guardamos en $row los registros que vamos obteniendo de la base de datos del objeto chofer
+				while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
 
-    array_push($chofer_arr["records"],$chofer_item);
-    
-  }
+						extract($row);
 
-  http_response_code(200);
+						$chofer_item=array(
+										"chofer_id"=>$chofer_id,
+										"nombre"=>$nombre,
+										"apellido"=>$apellido,
+										"email"=>$email,
+										"documento"=>$documento,
+										"sistema_id"=>$sistema_id,
+										"vehiculo_id"=>$vehiculo_id,
+										"created"=>$created,
+										"updated"=>$updated
+										);
 
-  echo json_encode($chofer_arr);
-}else{
-  http_response_code(404);
+						array_push($chofer_arr["records"],$chofer_item);
 
-  echo json_encode(array("message"=>"no se encontro nada"));
-}
+				}
+
+				http_response_code(200);
+
+				echo json_encode($chofer_arr);
+		}else{
+				http_response_code(404);
+
+				echo json_encode(array("message"=>"no se encontro nada"));
+		}
 }
 else{
-    echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
-  }
+		echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
+}
 
- ?>
+?>

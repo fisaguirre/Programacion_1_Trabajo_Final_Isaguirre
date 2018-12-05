@@ -1,63 +1,63 @@
 <?php
 
 if($_SERVER['HTTP_REFERER'] == "crud.php"){
-  
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
 
-include_once '../config/database.php';
-include_once '../config/core.php';
-include_once '../objects/sistema_transporte.php';
+		header("Access-Control-Allow-Origin: *");
+		header("Content-Type: application/json; charset=UTF-8");
 
-//creamos objetos de tipo base de datos y conectamos
-$database=new Database();
-$db=$database->getConnection();
+		include_once '../config/database.php';
+		include_once '../config/core.php';
+		include_once '../objects/sistema_transporte.php';
 
-//creamos objeto chofer
-$sistema_transporte=new Sistema_transporte($db);
+		//creamos objetos de tipo base de datos y conectamos
+		$database=new Database();
+		$db=$database->getConnection();
 
-//obtenemos palabra clave
-$keyword=isset($_GET["key"]) ? $_GET["key"] : "";
+		//creamos objeto chofer
+		$sistema_transporte=new Sistema_transporte($db);
 
-$stmt=$sistema_transporte->search($keyword);
-$num=$stmt->rowCount();
+		//obtenemos palabra clave
+		$keyword=isset($_GET["key"]) ? $_GET["key"] : "";
 
-
-if($num>0)
-{
-  $sistema_transporte_arr=array();
-  $sistema_transporte_arr["records"]=array();
+		$stmt=$sistema_transporte->search($keyword);
+		$num=$stmt->rowCount();
 
 
-  //guardamos en $row los registros que vamos obteniendo de la base de datos del objeto sistema_transporte
-  while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+		if($num>0)
+		{
+				$sistema_transporte_arr=array();
+				$sistema_transporte_arr["records"]=array();
 
-    extract($row);
 
-    $sistema_transporte_item=array(
-      "sistema_id"=>$sistema_id,
-      "nombre"=>$nombre,
-      "pais_procedencia"=>$pais_procedencia,
-      "created"=>$created,
-      "updated"=>$updated
-    );
+				//guardamos en $row los registros que vamos obteniendo de la base de datos del objeto sistema_transporte
+				while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
 
-    array_push($sistema_transporte_arr["records"],$sistema_transporte_item);
-    
-  }
+						extract($row);
 
-  http_response_code(200);
+						$sistema_transporte_item=array(
+										"sistema_id"=>$sistema_id,
+										"nombre"=>$nombre,
+										"pais_procedencia"=>$pais_procedencia,
+										"created"=>$created,
+										"updated"=>$updated
+										);
 
-  echo json_encode($sistema_transporte_arr);
-}else{
-  http_response_code(404);
+						array_push($sistema_transporte_arr["records"],$sistema_transporte_item);
 
-  echo json_encode(array("message"=>"no se encontro nada"));
-}
+				}
+
+				http_response_code(200);
+
+				echo json_encode($sistema_transporte_arr);
+		}else{
+				http_response_code(404);
+
+				echo json_encode(array("message"=>"no se encontro nada"));
+		}
 
 
 }
 else {
-  echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
+		echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
 }
- ?>
+?>

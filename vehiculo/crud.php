@@ -7,61 +7,65 @@ $start = $time;
 include '../usuario/validate_token.php';
 
 if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
-    if( isset($_GET['key']) ) {
-        include 'search.php';
-     //   $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/read.php/';
-     $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-        $nuevo=parse_url($url);
-     if(isset($nuevo["query"])){
-        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
-     }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
-     }
-    }else{
-        include 'read.php';
-   //     $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/read.php/';
-   $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-        $nuevo=parse_url($url);
-     if(isset($nuevo["query"])){
-        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
-     }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
-     }
-    }
-    
+		if( isset($_GET['key']) ) {
+				include 'search.php';
+				//   $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/read.php/';
+				$url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+				$nuevo=parse_url($url);
+				if(isset($nuevo["query"])){
+			//			$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+						$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
+
+				}else{
+						$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
+				}
+		}else{
+				include 'read.php';
+				//     $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/read.php/';
+				$url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+				$nuevo=parse_url($url);
+				if(isset($nuevo["query"])){
+			//			$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+						$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
+
+				}else{
+						$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
+				}
+		}
+
 }
 if($_SERVER['REQUEST_METHOD']==='POST'){
-    include 'create.php';
-   // $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/create.php/';
-   $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-    $nuevo=parse_url($url);
-     if(isset($nuevo["query"])){
-        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
-     }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
-     }
+		include 'create.php';
+		// $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/create.php/';
+		$url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		$nuevo=parse_url($url);
+		if(isset($nuevo["query"])){
+				$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+		}else{
+				$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
+		}
 }
 if($_SERVER['REQUEST_METHOD']==='PUT'){
-    include 'update.php';
-    //$endpoint='http://localhost/2018/Trabajo_Final/vehiculo/update.php/';
-    $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-    $nuevo=parse_url($url);
-     if(isset($nuevo["query"])){
-        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
-     }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
-     }
+		include 'update.php';
+		//$endpoint='http://localhost/2018/Trabajo_Final/vehiculo/update.php/';
+		$url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		$nuevo=parse_url($url);
+		if(isset($nuevo["query"])){
+				$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+		}else{
+				$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
+		}
 }
 if($_SERVER['REQUEST_METHOD']==='DELETE'){
-    include 'delete.php';
-  //  $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/delete.php/';
-  $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-    $nuevo=parse_url($url);
-     if(isset($nuevo["query"])){
-        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
-     }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
-     }
+		include 'delete.php';
+		//  $endpoint='http://localhost/2018/Trabajo_Final/vehiculo/delete.php/';
+		$url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		$nuevo=parse_url($url);
+		if(isset($nuevo["query"])){
+				$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+		}else{
+				$endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
+		}
 }
 
 

@@ -12,45 +12,25 @@
 
 <?php session_start() ?>
 <?php
-
 if($_SESSION['admin']!=1){
     header('Location: ../../login.html');
 }
-
 ?>
 
 <?php
-
 include_once '../../objects/auditoria.php';
 include_once '../../../config/database.php';
-/*
-$database=new Database();
-$db=$database->getConnection();
-
-$auditoria=new Auditoria($db);
-
-$auditoria->$_POST['date1'];
-
-*/
 
 $database=new Database();
 $db=$database->getConnection();
-
 $auditoria=new Auditoria($db);
-
 $auditoria->primera_fecha=$_POST['date1'];
 $auditoria->segunda_fecha=$_POST['date2'];
-
-
 $stmt=$auditoria->export();
-
 $cantidad=$stmt->rowCount();
-
 $arr_audi['records']=array();
-
 if($cantidad>0){
   $archivo=fopen('registro.txt',"w+");
-
 ?>
   <form action="expo.php" method="POST" style="border:1px solid #ccc">
   <div class="container">
@@ -63,7 +43,6 @@ if($cantidad>0){
 </form>     
 
 <?php
-
 while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
       extract($row);
       $array=array(
@@ -73,15 +52,11 @@ while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
         "endpoint"=>$endpoint,
         "created"=>$created
       );
-
       array_push($arr_audi['records'],$array);
-
      }
-
 for($i=0;$i<$cantidad;$i++){
   foreach($arr_audi['records'] as $fila){
     $arr[$i]=implode(",",$arr_audi['records'][$i]);
-    echo "<br>";
   }
 }
 /*
@@ -90,14 +65,11 @@ for($i=0;$i<$cantidad;$i++){
     echo "<br>";
 }
 */
-
      for($e=0;$e<$cantidad;$e++){
       fwrite($archivo,' '.$arr[$e].PHP_EOL);
      }
      fclose($archivo);
-
      
-
 }else{
   ?>
 
@@ -116,10 +88,7 @@ for($i=0;$i<$cantidad;$i++){
 
 
 <?php
-
-
 }
-
 ?>
 
 
@@ -149,5 +118,3 @@ header('Location: ../../login.html');
 
   </body>
 </html>
-
-

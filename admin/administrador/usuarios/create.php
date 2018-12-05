@@ -8,12 +8,14 @@ if($_SESSION['admin']!=1){
 ?>
 
 <html>
+
 <head>
-<title></title>
+  <title></title>
 </head>
+
 <body>
 
-<?php
+  <?php
 
 include_once '../../../config/database.php';
 include_once '../../objects/administrador.php';
@@ -48,16 +50,16 @@ if(
 
 
  ?>
-<a href="../menu_usuarios.php">Volver al menu</a>
+  <a href="../menu_usuarios.php">Volver al menu</a>
 
 
-<div class="row">
-  <div class="col-lg-6">
-    <button id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+  <div class="row">
+    <div class="col-lg-6">
+      <button id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
 
+    </div>
   </div>
-</div>
-<?php
+  <?php
 if($_GET['button1']){logout();}
 function logout(){
 session_unset();
@@ -66,5 +68,5 @@ header('Location: ../../login.html');
 ?>
 
 </body>
-</html>
 
+</html>

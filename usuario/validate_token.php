@@ -26,50 +26,50 @@ $data = json_decode(file_get_contents("php://input"));
 //el ? significa que si se cumple(true) pasa al segundo parametro($data->jwt) y si no se cumple el primero pasa al tercero("") o sea nulo
 //o sea que si es true $jwt=$data->jwt, si es falso $jwt=""(nulo);
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $jwt=isset($_GET["jwt"]) ? $_GET["jwt"] : "";
-  }
-  else {
-    $jwt=isset($data->jwt) ? $data->jwt : "";
-  }
+		$jwt=isset($_GET["jwt"]) ? $_GET["jwt"] : "";
+}
+else {
+		$jwt=isset($data->jwt) ? $data->jwt : "";
+}
 // if jwt is not empty
 if($jwt){
-    // if decode succeed, show user details
-    try {
-      $decoded = JWT::decode($jwt, $key, array('HS256'));
+		// if decode succeed, show user details
+		try {
+				$decoded = JWT::decode($jwt, $key, array('HS256'));
 
-        // decode jwt
-        // set response code
-        http_response_code(200);
+				// decode jwt
+				// set response code
+				http_response_code(200);
 
 
 
-        $name=$decoded->data->usuario;
-        return $name;
-        
-        // show user details
-       // echo json_encode(array(
-        //    "message" => "Access granted.",
-         //  "data" => $decoded->data
-        //));
+				$name=$decoded->data->usuario;
+				return $name;
 
-    }
-    // if decode fails, it means jwt is invalid
-  catch (Exception $e){
-      // set response code
-      http_response_code(401);
-      // tell the user access denied  & show error message
-      echo json_encode(array(
-          "message" => "Access denied 123.",
-          "error" => $e->getMessage()
-      ));
-      exit;
-  }
+				// show user details
+				// echo json_encode(array(
+				//    "message" => "Access granted.",
+				//  "data" => $decoded->data
+				//));
+
+		}
+		// if decode fails, it means jwt is invalid
+		catch (Exception $e){
+				// set response code
+				http_response_code(401);
+				// tell the user access denied  & show error message
+				echo json_encode(array(
+										"message" => "Access denied 123.",
+										"error" => $e->getMessage()
+									  ));
+				exit;
+		}
 }
 // show error message if jwt is empty
 else{
-    // set response code
-    http_response_code(401);
-    // tell the user access denied
-    echo json_encode(array("message" => "Access deniedsssssss."));
-    exit;
+		// set response code
+		http_response_code(401);
+		// tell the user access denied
+		echo json_encode(array("message" => "Access deniedsssssss."));
+		exit;
 }

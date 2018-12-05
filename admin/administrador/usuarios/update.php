@@ -1,16 +1,18 @@
 <html>
+
 <head>
 
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
-<link href="../../css/create.css" rel="stylesheet" type="text/css"/>
-<link href="../../css/table_read.css" rel="stylesheet" type="text/css"/>
-<title></title>
+  <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/create.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/table_read.css" rel="stylesheet" type="text/css" />
+  <title></title>
 </head>
+
 <body>
 
-<?php session_start(); ?>
+  <?php session_start(); ?>
 
-<?php 
+  <?php 
 
 if($_SESSION['admin']!=1){
   header('Location: ../../login.html');
@@ -18,7 +20,7 @@ if($_SESSION['admin']!=1){
 ?>
 
 
-<?php
+  <?php
 
 include_once '../../../config/database.php';
 include_once '../../objects/administrador.php';
@@ -47,46 +49,47 @@ if(
   {
     if($admin->update()){
       ?>
-      <div class="container">
-      <h1>Usuario modificado correctamente</h1>
-    </div>
-    <?php
+  <div class="container">
+    <h1>Usuario modificado correctamente</h1>
+  </div>
+  <?php
 
         }else{
           ?>
-          <div class="container">
-      <h1>Usuario no modificado</h1>
-    </div>
-    <?php
+  <div class="container">
+    <h1>Usuario no modificado</h1>
+  </div>
+  <?php
 
         }
 }else{
   ?>
   <div class="container">
-<h1>Faltan Datos</h1>
-</div>
-<?php
+    <h1>Faltan Datos</h1>
+  </div>
+  <?php
 }
       
 
 ?>
 
 
-<form action="create.php" method="POST" style="border:1px solid #ccc">
+  <form action="create.php" method="POST" style="border:1px solid #ccc">
 
 
-  <div class="container">
-    <div class="clearfix">
-    <button type="button" onClick='location.href="../menu_usuarios.php"'>Menu Usuarios</button>
-      <button type="button" onClick='location.href="../../home.php"'>HOME</button>
-      <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Cerrar Sesion</button>
+    <div class="container">
+      <div class="clearfix">
+        <button type="button" onClick='location.href="../menu_usuarios.php"'>Menu Usuarios</button>
+        <button type="button" onClick='location.href="../../home.php"'>HOME</button>
+        <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Cerrar
+          Sesion</button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
 
 
 
-<?php
+  <?php
 if($_GET['button1']){logout();}
 function logout(){
 session_unset();
@@ -94,4 +97,5 @@ header('Location: ../../login.html');
 }
 ?>
 </body>
+
 </html>

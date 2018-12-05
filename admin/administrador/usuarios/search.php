@@ -1,25 +1,27 @@
 <html>
+
 <head>
 
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
-<link href="../../css/create.css" rel="stylesheet" type="text/css"/>
-<link href="../../css/table_read.css" rel="stylesheet" type="text/css"/>
-<title></title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/create.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/table_read.css" rel="stylesheet" type="text/css" />
+    <title></title>
 </head>
+
 <body>
-<table border='1' id="customers">
+    <table border='1' id="customers">
 
 
-<?php session_start(); ?>
+        <?php session_start(); ?>
 
-<?php 
+        <?php 
 
 if($_SESSION['admin']!=1){
   header('Location: ../../login.html');
 }
 ?>
 
-<?php
+        <?php
 
 
 
@@ -106,19 +108,19 @@ foreach($row as $fil){
 
 
 
-</table>
+    </table>
 
     <div class="container">
 
-<div class="clearfix">
-      <button type="button" onClick='location.href="../menu_usuarios.php"'>Menu Usuarios</button>
-      <button type="button" onClick='location.href="../../home.php"'>HOME</button>
-      <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
-      
-    </div>
-</div>
+        <div class="clearfix">
+            <button type="button" onClick='location.href="../menu_usuarios.php"'>Menu Usuarios</button>
+            <button type="button" onClick='location.href="../../home.php"'>HOME</button>
+            <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
 
-<?php
+        </div>
+    </div>
+
+    <?php
 if($_GET['button1']){logout();}
 function logout(){
 session_unset();
@@ -126,4 +128,5 @@ header('Location: ../../login.html');
 }
 ?>
 </body>
+
 </html>

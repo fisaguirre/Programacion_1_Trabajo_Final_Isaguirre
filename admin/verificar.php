@@ -3,7 +3,7 @@
 <?php 
 
 if($_SESSION['admin']!=1){
-  header('Location: login.html');
+		header('Location: login.html');
 }
 ?>
 
@@ -26,13 +26,13 @@ $admin=new Admin($db);
 $existe=$admin->verificar($a,$b);
 
 if($existe && password_verify($b, $admin->clave)){
-    if( ($admin->rol)=='administrador') {
-        $_SESSION['admin']=1;
-        header('Location: home.php');
-    }else{
-        $_SESSION['admin']=0;
-        header('Location: login.html');
-    }
+		if( ($admin->rol)=='administrador') {
+				$_SESSION['admin']=1;
+				header('Location: home.php');
+		}else{
+				$_SESSION['admin']=0;
+				header('Location: login.html');
+		}
 }
 
 

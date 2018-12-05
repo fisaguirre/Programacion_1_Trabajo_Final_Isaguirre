@@ -22,36 +22,36 @@ $usuario = new Usuario($db);
 $data = json_decode(file_get_contents("php://input"));
 
 if(
-    !empty($data->nombre) &&
-    !empty($data->clave) && 
-    !empty($data->rol)
-){
+				!empty($data->nombre) &&
+				!empty($data->clave) && 
+				!empty($data->rol)
+  ){
 
 
-$usuario->nombre = $data->nombre;
-$usuario->clave = $data->clave;
-$usuario->rol=$data->rol;
-$usuario->created = date('Y-m-d H:i:s');
+		$usuario->nombre = $data->nombre;
+		$usuario->clave = $data->clave;
+		$usuario->rol=$data->rol;
+		$usuario->created = date('Y-m-d H:i:s');
 
-if($usuario->create()){
+		if($usuario->create()){
 
-    http_response_code(200);
+				http_response_code(200);
 
-    echo json_encode(array("message" => "Usuario creado."));
+				echo json_encode(array("message" => "Usuario creado."));
+		}
+
+		else{
+
+				http_response_code(400);
+
+				echo json_encode(array("message" => "No se creo usuario."));
+		}
 }
-
 else{
 
-    http_response_code(400);
+		http_response_code(400);
 
-    echo json_encode(array("message" => "No se creo usuario."));
-  }
-}
-else{
-
-    http_response_code(400);
-
-    echo json_encode(array("message" => "No se puede crear usuario, faltan datos."));
+		echo json_encode(array("message" => "No se puede crear usuario, faltan datos."));
 }
 
 ?>

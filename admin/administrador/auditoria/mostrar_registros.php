@@ -1,17 +1,19 @@
 <html>
+
 <head>
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
-<link href="../../css/create.css" rel="stylesheet" type="text/css"/>
-<link href="../../css/table_read.css" rel="stylesheet" type="text/css"/>
-<title></title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/create.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/table_read.css" rel="stylesheet" type="text/css" />
+    <title></title>
 </head>
+
 <body>
-<table border='1' id="customers">
+    <table border='1' id="customers">
 
 
-<?php session_start() ?>
+        <?php session_start() ?>
 
-<?php 
+        <?php 
 
 if($_SESSION['admin']!=1){
   header('Location: ../../login.html');
@@ -19,7 +21,7 @@ if($_SESSION['admin']!=1){
 ?>
 
 
-<?php
+        <?php
 
 include_once '../../objects/auditoria.php';
 include_once '../../../config/database.php';
@@ -68,21 +70,21 @@ if($num>0){
 
 ?>
 
-</table>
+    </table>
 
 
     <div class="container">
 
-<div class="clearfix">
+        <div class="clearfix">
 
-      <button type="button" onClick='location.href="../menu_auditoria.php"'>Menu Auditoria</button>
-      <button type="button" onClick='location.href="../../home.php"'>HOME</button>
-      <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
-      
+            <button type="button" onClick='location.href="../menu_auditoria.php"'>Menu Auditoria</button>
+            <button type="button" onClick='location.href="../../home.php"'>HOME</button>
+            <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+
+        </div>
     </div>
-</div>
 
-<?php
+    <?php
 if($_GET['button1']){logout();}
 function logout(){
 session_unset();
@@ -91,4 +93,5 @@ header('Location: ../../login.html');
 ?>
 
 </body>
+
 </html>

@@ -1,25 +1,27 @@
 <html>
+
 <head>
-<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
-<link href="../../css/create.css" rel="stylesheet" type="text/css"/>
-<link href="../../css/table_read.css" rel="stylesheet" type="text/css"/>
-<title></title>
+  <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/create.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/table_read.css" rel="stylesheet" type="text/css" />
+  <title></title>
 </head>
+
 <body>
 
 
-<?php session_start(); ?>
+  <?php session_start(); ?>
 
-<?php 
+  <?php 
 
 if($_SESSION['admin']!=1){
   header('Location: ../../login.html');
 }
 ?>
 
-<form action="update.php" method="POST">
+  <form action="update.php" method="POST">
 
-<?php
+    <?php
 
 
 include_once '../../../config/database.php';
@@ -74,10 +76,10 @@ while($fila=$stmt->fetch(PDO::FETCH_ASSOC)){
       echo "<div class=\"clearfix\">";
       echo "<button type=\"submit\" class=\"signupbtn\">Guardar cambios</button>";
       ?>
-      <button type="button" onClick='location.href="../menu_usuarios.php"'>Menu Usuarios</button>
-      <button type="button" onClick='location.href="../../home.php"'>HOME</button>
-      <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
-      <?php
+    <button type="button" onClick='location.href="../menu_usuarios.php"'>Menu Usuarios</button>
+    <button type="button" onClick='location.href="../../home.php"'>HOME</button>
+    <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
+    <?php
       echo "</div>";
       echo "</div>";
 
@@ -89,12 +91,12 @@ while($fila=$stmt->fetch(PDO::FETCH_ASSOC)){
 
     ?>
 
-        
-    </form>
+
+  </form>
 
 
 
-<?php
+  <?php
 if($_GET['button1']){logout();}
 function logout(){
 session_unset();
@@ -102,4 +104,5 @@ header('Location: ../../login.html');
 }
 ?>
 </body>
+
 </html>

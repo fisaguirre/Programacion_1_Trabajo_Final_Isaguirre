@@ -2,92 +2,92 @@
 
 
 if($_SERVER['HTTP_REFERER'] == "crud.php"){
-    
-// required headers
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET");
-header("Content-Type: application/json; charset=UTF-8");
 
-//conexion base de datos
-// include database and object files
-include_once '../config/database.php';
-include_once '../objects/chofer.php';
+		// required headers
+		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Methods: GET");
+		header("Content-Type: application/json; charset=UTF-8");
 
-// instantiate database and product object
-$database = new Database();
-$db = $database->getConnection();
+		//conexion base de datos
+		// include database and object files
+		include_once '../config/database.php';
+		include_once '../objects/chofer.php';
 
-// initialize object
-$chofer = new Chofer($db);
+		// instantiate database and product object
+		$database = new Database();
+		$db = $database->getConnection();
 
-//query chofer
+		// initialize object
+		$chofer = new Chofer($db);
 
-$stmt = $chofer->read();
-$num = $stmt->rowCount();
+		//query chofer
 
-// check if more than 0 record found
+		$stmt = $chofer->read();
+		$num = $stmt->rowCount();
 
-if($num>0){
+		// check if more than 0 record found
 
-    // chofer array
-    $chofer_arr=array();
-    $chofer_arr["records"]=array();
+		if($num>0){
 
-    // retrieve our table contents
-    // fetch() is faster than fetchAll()
-    //FETCH_ASSOC ->obtiene uan fila de resultado como un array asociativo
-    //fetch() -> obtiene la siguiente fila de un conjunto de resultados
-    //PDO::FETCH_ASSOC = devuelve un array indexado por los nombres de las
-    //columnas del conjunto de resultados.
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        // extract row
-        // this will make $row['name'] to
-        // just $name only
+				// chofer array
+				$chofer_arr=array();
+				$chofer_arr["records"]=array();
 
-        //extract-> importa variables a la tabla de simbolos actual desde un array
-        //extraigo lo que hay en row
-        extract($row);
+				// retrieve our table contents
+				// fetch() is faster than fetchAll()
+				//FETCH_ASSOC ->obtiene uan fila de resultado como un array asociativo
+				//fetch() -> obtiene la siguiente fila de un conjunto de resultados
+				//PDO::FETCH_ASSOC = devuelve un array indexado por los nombres de las
+				//columnas del conjunto de resultados.
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+						// extract row
+						// this will make $row['name'] to
+						// just $name only
 
-        //en el array chofer_datos guardo en cada variable asociativa su respectivo contenido de la base de datos
-        $chofer_item=array(
-            "apellido" => $apellido,
-            "nombre" => $nombre,
-            "documento" => $documento,
-            "email" => $email,
-            "vehiculo_id" => $vehiculo_id,
-            "sistema_id" => $sistema_id,
-            "modelo_vehiculo" => $modelo_vehiculo,
-            "created" => $created,
-            "updated" => $updated
-        );
-        //pusheo los valores de chofer_datos en chofer_arr
-        array_push($chofer_arr["records"], $chofer_item);
-    }
+						//extract-> importa variables a la tabla de simbolos actual desde un array
+						//extraigo lo que hay en row
+						extract($row);
 
-    // set response code - 200 OK
-    http_response_code(200);
+						//en el array chofer_datos guardo en cada variable asociativa su respectivo contenido de la base de datos
+						$chofer_item=array(
+										"apellido" => $apellido,
+										"nombre" => $nombre,
+										"documento" => $documento,
+										"email" => $email,
+										"vehiculo_id" => $vehiculo_id,
+										"sistema_id" => $sistema_id,
+										"modelo_vehiculo" => $modelo_vehiculo,
+										"created" => $created,
+										"updated" => $updated
+										);
+						//pusheo los valores de chofer_datos en chofer_arr
+						array_push($chofer_arr["records"], $chofer_item);
+				}
 
-    // show products data in json format
+				// set response code - 200 OK
+				http_response_code(200);
 
-    echo json_encode($chofer_arr);
+				// show products data in json format
 
+				echo json_encode($chofer_arr);
+
+		}
+
+		// si no se encuentran registros entonces:
+		else{
+
+				// set response code - 404 Not found
+				http_response_code(404);
+
+				// tell the user no products found
+				echo json_encode(
+								array("message" => "No choferes found.")
+								);
+		}
 }
-
-// si no se encuentran registros entonces:
 else{
-
-    // set response code - 404 Not found
-    http_response_code(404);
-
-    // tell the user no products found
-    echo json_encode(
-        array("message" => "No choferes found.")
-    );
+		echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
 }
-}
-else{
-    echo json_encode(array("message" => "acceso denegado, dirigirse a crud.php"));
-  }
 
 
 ?>

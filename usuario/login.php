@@ -22,64 +22,66 @@ $usuario = new Usuario($db);
 $data = json_decode(file_get_contents("php://input"));
 
 if(
-    !empty($data->nombre) &&
-    !empty($data->clave)
-){
-$usuario->nombre = $data->nombre;
-$usuario->clave = $data->clave;
-$usuario_exists = $usuario->usuarioExists();
+				!empty($data->nombre) &&
+				!empty($data->clave)
+  ){
+		$usuario->nombre = $data->nombre;
+		$usuario->clave = $data->clave;
+		$usuario_exists = $usuario->usuarioExists();
 
-//generate json web token
+		//generate json web token
 
-include_once '../config/core.php';
+		include_once '../config/core.php';
 
-//al llamar al a funcion usuarioExists() guardamos en $usuario->password el hash
-//con password_verify comprobamos si lo que recibimos por input $data->password coincide con el hash $usuario->password
-//(que se habia creado al momento de crear usuario)
-if($usuario_exists && password_verify($data->clave, $usuario->clave)){
-    $fecha=date("Y-m-d H:i:s");  
-    $token = array(
-       "iss" => $iss,
-       "aud" => $aud,
-       "iat" => $iat,
-       "nbf" => $nbf,
-       "data" => array(
-           "usuario_id" => $usuario->usuario_id,
-           "usuario" => $usuario->nombre
-       )
-    );
+		//al llamar al a funcion usuarioExists() guardamos en $usuario->password el hash
+		//con password_verify comprobamos si lo que recibimos por input $data->password coincide con el hash $usuario->password
+		//(que se habia creado al momento de crear usuario)
+		if($usuario_exists && password_verify($data->clave, $usuario->clave)){
+				$fecha=date("Y-m-d H:i:s");  
+				$token = array(
+								"iss" => $iss,
+								"aud" => $aud,
+								"iat" => $iat,
+								"nbf" => $nbf,
+								"data" => array(
+										"usuario_id" => $usuario->usuario_id,
+										"usuario" => $usuario->nombre
+										)
+							  );
 
-    // set response code
-    http_response_code(200);
+				// set response code
+				http_response_code(200);
 
-    // generate jwt
-    $jwt = JWT::encode($token, $key);
+				// generate jwt
+				$jwt = JWT::encode($token, $key);
 
-    echo json_encode(
-            array(
-                "message" => "Successful login.",
-                "jwt" => $jwt
-            )
-        );
-        
-}
+				echo json_encode(
+								array(
+										"message" => "Successful login.",
+										"jwt" => $jwt
+									 )
+								);
 
-else{
+		}
 
-   // set response code
-   http_response_code(401);
+		else{
 
-   // tell the usuario login failed
-   echo json_encode(array("message" => "Login failed."));
-}
+				// set response code
+				http_response_code(401);
+
+				// tell the usuario login failed
+				echo json_encode(array("message" => "Login failed."));
+		}
 }
 // tell the usuario data is incomplete
 
 else{
 
-    // set response code - 400 bad request
-    http_response_code(400);
+		// set response code - 400 bad request
+		http_response_code(400);
 
-    // tell the usuario
-    echo json_encode(array("message" => "Unable to login. Data is incomplete."));
+		// tell the usuario
+		echo json_encode(array("message" => "Unable to login. Data is incomplete."));
 }
+
+?>

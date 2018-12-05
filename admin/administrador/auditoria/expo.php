@@ -82,10 +82,11 @@ for($i=0;$i<$cantidad;$i++){
      }
      fclose($archivo);
 
+     
+
 }else{
   echo "no se creo";
 }
-
 
 ?>
 
@@ -93,6 +94,7 @@ for($i=0;$i<$cantidad;$i++){
 
 
 </table>
+<a href="descargar.php">des</a>
   </body>
 </html>
 

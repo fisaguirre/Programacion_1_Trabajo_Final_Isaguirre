@@ -1,21 +1,39 @@
 <html>
 <head>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
 <title></title>
 </head>
+
 <body>
 
 <h2> </h2>
 
-<form action="verificar.php" method="POST" name="MIFORMULARIO">
-   
-    <label for="usuario">Usuario: </label>
-    <input type="text" name="usuario" required><br>
-    <label for="clave">Clave: </label>
-    <input type="password" name="clave" required><br>
-    <input type="submit" value="enviar datos">
 
-    </form>
+<body>
 
+        <h2>Login Form</h2>
+        
+        <form action="verificar.php" method="POST" name="MIFORMULARIO">
+                <div class="imgcontainer">
+            <img src="css/descarga.jpeg" alt="Avatar" class="avatar">
+          </div>
+        
+          <div class="container">
+            <label for="usuario"><b>Usuario</b></label>
+            <input type="text" placeholder="Ingrese Usuario" name="usuario" required>
+        
+            <label for="clave"><b>Clave</b></label>
+            <input type="password" placeholder="Ingrese Clave" name="clave" required>
+                
+            <button type="submit">Ingresar</button>
+          </div>
+          <div class="container" style="background-color:#f1f1f1">
+          </div>
+        </form>
+        
+        </body>
+        </html>
 
 </body>
 </html>

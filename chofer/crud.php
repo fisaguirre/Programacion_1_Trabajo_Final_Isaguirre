@@ -17,9 +17,9 @@ if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
         $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
      $nuevo=parse_url($url);
      if(isset($nuevo["query"])){
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
      }else{
-      $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+      $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
    }
        // exit;
     }else{
@@ -28,9 +28,9 @@ if( ($_SERVER['REQUEST_METHOD']==='GET') && (isset($_GET['jwt'])) ) {
      $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
      $nuevo=parse_url($url);
      if(isset($nuevo["query"])){
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
      }else{
-      $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+      $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
    }
      //sino hacer un explode de parse_url de la url y despues ver cual es crud.php sacarlo y poner el metodo y a continuacion
      //ponerle el query
@@ -45,9 +45,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
      $nuevo=parse_url($url);
      if(isset($nuevo["query"])){
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
      }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
      }
 
 
@@ -59,9 +59,9 @@ if($_SERVER['REQUEST_METHOD']==='PUT'){
     $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
      $nuevo=parse_url($url);
      if(isset($nuevo["query"])){
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
      }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
      }
   //  exit;
 }
@@ -71,9 +71,9 @@ if($_SERVER['REQUEST_METHOD']==='DELETE'){
     $url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
      $nuevo=parse_url($url);
      if(isset($nuevo["query"])){
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
+        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'].'?'.$nuevo["query"];
      }else{
-        $endpoint=$nuevo["host"].$nuevo["path"].$_SERVER['REQUEST_METHOD'];
+        $endpoint=$nuevo["host"].$nuevo["path"].'/'.$_SERVER['REQUEST_METHOD'];
      }
 
    // exit;

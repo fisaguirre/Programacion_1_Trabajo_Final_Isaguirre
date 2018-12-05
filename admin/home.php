@@ -1,5 +1,3 @@
-<?php session_start() ?>
-
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -9,13 +7,11 @@
   </head>
   <body>
 
+<?php session_start() ?>
 <?php
-
-
 if($_SESSION['admin']!=1){
     header('Location: login.html');
 }
-//session_unset();
 
 ?>
 

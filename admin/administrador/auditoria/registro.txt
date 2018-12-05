@@ -1,2 +1,1 @@
- s111,asd,2018-12-03 18:34:50,aas,2018-12-03 18:34:50
- s97,jero,2018-12-03 16:11:55,http://localhost/2018/Trabajo_Final/chofer/crud.php/?,2018-12-03 16:11:55
+ 278,asd,2018-12-04 22:07:28,localhost/2018/Trabajo_Final/chofer/crud.php/GET?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJ1c3VhcmlvX2lkIjoiMTMiLCJ1c3VhcmlvIjoiYXNkIn19.gJtsfGSaBSukbU0VMAsa5Z5aV5Eevg9nB6ZOjOqosQk,2018-12-04 22:07:28

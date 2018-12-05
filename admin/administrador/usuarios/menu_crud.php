@@ -1,3 +1,10 @@
+<html>
+<head>
+<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/create.css" rel="stylesheet" type="text/css"/>
+<title></title>
+</head>
+
 <?php session_start(); ?>
 
 <?php 
@@ -82,19 +89,36 @@ if($_POST['search']){
 if($_POST['create']){
     ?>
 
-    <form action="create.php" method="POST">
-        <label for="nombre">Nombre Usuario: </label>
-        <input type="text" name="nombre" id="nombre">
-        <label for="clave">Clave: </label>
-        <input type="password" name="clave" id="clave">  
-        <label for="rol">Rol: </label>
-        <select name="rol">
-            <option value="usuario">Usuario</option>
-            <option value="administrador">Administrador</option>
-        </select>
-        <input type="submit" name="datos" value="Crear Usuario">
 
-    </form>
+
+<form action="create.php" method="POST" style="border:1px solid #ccc">
+  <div class="container">
+    <h1>Crear Usuario</h1>
+    <p>Completa el formulario para crear un usuario.</p>
+    <hr>
+
+    <label for="nombre"><b>Nombre</b></label>
+    <input type="text" placeholder="Ingrese Nombre" name="nombre" required>
+
+    <label for="clave"><b>Clave</b></label>
+    <input type="password" placeholder="Ingrese Clave" name="clave" required>
+
+    <label for="rol"><b>Rol</b></label>
+    <input type="text" placeholder="Ingrese Rol" name="rol" required>
+    
+    <label>
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+    
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="submit" class="signupbtn">Crear usuario</button>
+    </div>
+  </div>
+</form>
+
+
+    
 
 
     <?php
@@ -202,6 +226,7 @@ if($num>0){
 
   </div>
 </div>
+
 <?php
 if($_GET['button1']){logout();}
 function logout(){

@@ -195,22 +195,16 @@ class Chofer{
 				   LEFT JOIN vehiculo v ON c.vehiculo_id = v.vehiculo_id WHERE c.nombre LIKE ? OR v.modelo LIKE ? ORDER BY c.created DESC";
 				 */
 				$query="SELECT * FROM " . $this->table_name . " WHERE chofer_id LIKE ? OR nombre LIKE ? OR apellido LIKE ? OR documento LIKE ? ORDER BY created DESC";
-				// $query="SELECT * FROM " . $this->table_name . " WHERE chofer_id LIKE ? AND apellido LIKE ? AND nombre LIKE ? AND documento LIKE ? ORDER BY created DESC";
-				//$query = "SELECT * FROM " . $this->table_name . " WHERE chofer_id LIKE ? OR documento LIKE ? ORDER BY created DESC";
-				// $query = "SELECT * FROM " . $this->table_name . " WHERE chofer_id LIKE ? ORDER BY created DESC";
+				
+			
 
 				$stmt=$this->conn->prepare($query);
 
 				$keyword=strip_tags($keyword);
-				// $keyword = "%{$keyword}%";
+				 $keyword = "%{$keyword}%";
 
 
-				//  $keyword2=strip_tags($keyword2);
-
-				//$keyword3=strip_tags($keyword3);
-
-				//  $keyword4=strip_tags($keyword4);
-				// $keyword4 = "%{$keyword}%";
+			
 
 				$stmt->bindParam(1,$keyword);
 				$stmt->bindParam(2,$keyword);
@@ -218,11 +212,9 @@ class Chofer{
 				$stmt->bindParam(4,$keyword);
 
 
-
 				$stmt->execute();
-
-				return $stmt;
-
+				return true;
+				
 
 		}
 

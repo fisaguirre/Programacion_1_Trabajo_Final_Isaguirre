@@ -2,6 +2,7 @@
 
 if($_SERVER['HTTP_REFERER'] == "crud.php"){
 
+	
 		header("Access-Control-Allow-Origin: *");
 		header("Access-Control-Allow-Methods: GET");
 		header("Content-Type: application/json; charset=UTF-8");
@@ -28,8 +29,7 @@ if($_SERVER['HTTP_REFERER'] == "crud.php"){
 
 
 		$num=$stmt->rowCount();
-
-
+		
 		if($num>0)
 		{
 				$chofer_arr=array();

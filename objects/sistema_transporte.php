@@ -70,6 +70,7 @@ class Sistema_transporte{
 				//  $query_vehiculo="DELETE FROM " . $this->table_vehiculo . " WHERE sistema_id=:sistema_id";
 				$query_sistema_transporte= "DELETE FROM " . $this->table_name . " WHERE sistema_id=:sistema_id";
 
+
 				$stmt_chofer=$this->conn->prepare($query_chofer);
 				$stmt_sistema_vehiculo=$this->conn->prepare($query_sistema_vehiculo);
 				// $stmt->vehiculo=$this->conn->prepare($query_vehiculo);
@@ -84,17 +85,32 @@ class Sistema_transporte{
 				//  $vehiculo->bindParam(":sistema_id",$this->sistema_id);
 				$stmt_sistema_transporte->bindParam(":sistema_id",$this->sistema_id);
 
-
-
-				// if(($stmt_chofer->execute()) && ($stmt_sistema_vehiculo->execute()) && ($vehiculo->execute()) && ($stmt_sistema_transporte->execute())){
-				if(($stmt_chofer->execute()) && ($stmt_sistema_vehiculo->execute()) && ($stmt_sistema_transporte->execute())){
-
+				try{
+					$this->conn->beginTransaction();
+					$stmt_sistema_vehiculo->execute();
+					$stmt_chofer->execute();
+					$this->deletevehiculo();
+					$stmt_sistema_transporte->execute();
+					// execute query
+					if($this->conn->commit()){
 						return true;
-				}else{
-						return false;
-				}
+					}
+				  }catch(Exception $e){
+					$this->conn->rollBack();
+					return false;
+				  }
+
+				
 
 
+		}
+
+		function deletevehiculo(){
+			// delete query
+			$query_vehiculo = "DELETE FROM vehiculo WHERE vehiculo_id NOT IN (SELECT vehiculo_id FROM sistema_vehiculo)";
+			// prepare query
+			$stmt_vehiculo = $this->conn->prepare($query_vehiculo);
+			  $stmt_vehiculo->execute();
 		}
 
 

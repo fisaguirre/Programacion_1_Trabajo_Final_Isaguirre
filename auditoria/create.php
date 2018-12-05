@@ -37,21 +37,12 @@ function crear($name,$total_time,$endpoint){
 		if($auditoria->create()){
 				http_response_code(201);
 
-				echo json_encode(array("message" =>"Chofer ha sido creado"));
-
 
 		}else
 		{
 				http_response_code(503);
 
-				echo json_encode(array("message"=>"Chofer no ha sido creado"));
 		}
-
-		//orden de borrado
-		//sistema_vehiculo
-		//chofer
-		//vehiculo
-		//sistema_transporte
 
 
 }

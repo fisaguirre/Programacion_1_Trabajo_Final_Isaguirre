@@ -1,0 +1,57 @@
+GET:
+
+http://localhost/2018/Trabajo_Final/sistema_transporte/crud.php/
+
+data:
+
+jwt: jwt generado al loguear
+
+
+
+GET ONE(search):
+
+http://localhost/2018/Trabajo_Final/sistema_transporte/crud.php/
+
+data:
+
+jwt: jwt generado al loguear
+key: parametro a buscar(completo)
+
+
+
+POST:
+
+http://localhost/2018/Trabajo_Final/sistema_transporte/crud.php/
+
+data:
+
+{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJ1c3VhcmlvX2lkIjoiMSIsInVzdWFyaW8iOiJmZXIifX0.J0FQQbKFtgdAfgHD8JqnINxW2X1SmtzF2xugkYOqZNk",
+    "nombre": "a",
+    "pais_procedencia": "1"
+}
+
+
+
+PUT:
+
+
+http://localhost/2018/Trabajo_Final/sistema_transporte/crud.php/
+
+{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJ1c3VhcmlvX2lkIjoiMSIsInVzdWFyaW8iOiJmZXIifX0.J0FQQbKFtgdAfgHD8JqnINxW2X1SmtzF2xugkYOqZNk",
+    "sistema_id" : 1,
+    "nombre": "a",
+    "pais_procedencia": "1"
+}
+
+
+
+DELETE:
+
+http://localhost/2018/Trabajo_Final/sistema_transporte/crud.php/
+
+{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJ1c3VhcmlvX2lkIjoiMSIsInVzdWFyaW8iOiJmZXIifX0.J0FQQbKFtgdAfgHD8JqnINxW2X1SmtzF2xugkYOqZNk",
+    "sistema_id" : 1    
+}

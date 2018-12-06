@@ -1,0 +1,68 @@
+GET:
+
+http://localhost/2018/Trabajo_Final/chofer/crud.php/
+
+data:
+
+jwt: jwt generado al loguear
+
+
+
+GET ONE(search):
+
+http://localhost/2018/Trabajo_Final/chofer/crud.php/
+
+data:
+
+jwt: jwt generado al loguear
+key: parametro a buscar(completo)
+
+
+
+POST:
+
+http://localhost/2018/Trabajo_Final/chofer/crud.php/
+
+data:
+
+{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJ1c3VhcmlvX2lkIjoiMTMiLCJ1c3VhcmlvIjoiYXNkIn19.gJtsfGSaBSukbU0VMAsa5Z5aV5Eevg9nB6ZOjOqosQk",
+	"apellido" : "apellido",
+    "nombre" : "nombre",
+    "email" : "email",
+    "documento" : "documento",
+    "sistema_id" : "sistema_id",
+    "vehiculo_id" : "vehiculo_id"
+}
+
+
+PUT:
+
+
+http://localhost/2018/Trabajo_Final/chofer/crud.php/
+
+{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJ1c3VhcmlvX2lkIjoiMTMiLCJ1c3VhcmlvIjoiYXNkIn19.gJtsfGSaBSukbU0VMAsa5Z5aV5Eevg9nB6ZOjOqosQk",
+	"chofer_id" : "chofer_id",
+    "apellido" : "apellido",
+    "nombre" : "nombre",
+    "email" : "email",
+    "documento" : "documento",
+    "sistema_id" : "sistema_id",
+    "vehiculo_id" : "vehiculo_id"
+}
+
+DELETE:
+
+http://localhost/2018/Trabajo_Final/chofer/crud.php/
+
+{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJ1c3VhcmlvX2lkIjoiMTMiLCJ1c3VhcmlvIjoiYXNkIn19.gJtsfGSaBSukbU0VMAsa5Z5aV5Eevg9nB6ZOjOqosQk",
+	"chofer_id" : "chofer_id",
+    "apellido" : "apellido",
+    "nombre" : "nombre",
+    "email" : "email",
+    "documento" : "documento",
+    "sistema_id" : "sistema_id",
+    "vehiculo_id" : "vehiculo_id"
+}

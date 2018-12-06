@@ -1,3 +1,16 @@
+<html>
+
+<head>
+
+  <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/create.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/table_read.css" rel="stylesheet" type="text/css" />
+  <title></title>
+</head>
+
+<body>
+
+
 <?php session_start() ?>
 
 <?php 
@@ -6,14 +19,6 @@ if($_SESSION['admin']!=1){
   header('Location: ../../login.html');
 }
 ?>
-
-<html>
-
-<head>
-  <title></title>
-</head>
-
-<body>
 
   <?php
 
@@ -38,27 +43,42 @@ if(
 
   if($admin->create())
   {
-    echo "se creo";
+    ?>
+    <div class="container">
+      <h1>Se creo usuario correctamente</h1>
+    </div>
+    <?php
   }else
   {
-    echo "no se creo";
-}
+    ?>
+    <div class="container">
+      <h1>No se pudo crear usuario</h1>
+    </div>
+    <?php
+    }
 }else
 {
-    echo "vacio";
+  ?>
+  <div class="container">
+    <h1>Faltan ingresar datos</h1>
+  </div>
+  <?php
 }
 
 
  ?>
-  <a href="../menu_usuarios.php">Volver al menu</a>
+ <form action="create.php" method="POST" style="border:1px solid #ccc">
 
 
-  <div class="row">
-    <div class="col-lg-6">
-      <button id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Logout</button>
-
-    </div>
-  </div>
+   <div class="container">
+     <div class="clearfix">
+       <button type="button" onClick='location.href="../menu_usuarios.php"'>Menu Usuarios</button>
+       <button type="button" onClick='location.href="../../home.php"'>HOME</button>
+       <button type="button" class="cancelbtn" id="btnlogout" name="btnlogout" onClick='location.href="?button1=1"'>Cerrar
+         Sesion</button>
+     </div>
+   </div>
+ </form>
   <?php
 if($_GET['button1']){logout();}
 function logout(){

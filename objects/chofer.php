@@ -211,13 +211,16 @@ class Chofer{
 				$stmt->bindParam(3,$keyword);
 				$stmt->bindParam(4,$keyword);
 
-
+			try{
 				$stmt->execute();
-				return true;
+				return $stmt;
+			}catch(Exception $e){
+				echo json_encode($e->getMessage());
+				return false;
 				
-
 		}
 
 
 
+}
 }

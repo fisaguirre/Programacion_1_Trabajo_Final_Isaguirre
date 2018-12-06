@@ -180,14 +180,15 @@ class Vehiculo{
 
 						$cantidad=count($this->sistema_id);
 						$i=0;
+						
 						while($i<$cantidad){
-								$query_bo="DELETE FROM " . $this->table_sistema . " WHERE vehiculo_id LIKE ? AND NOT sistema_id LIKE ? ";
-								$stmt_bo=$this->conn->prepare($query_bo);
-								$stmt_bo->bindParam(1,$this->vehiculo_id);
-								$stmt_bo->bindParam(2,$this->sistema_id[$i]);
-								$var[$i]=$this->sistema_id[$i];
-								$i++;
-								$stmt_bo->execute();
+							$query_bo="DELETE FROM " . $this->table_sistema . " WHERE vehiculo_id LIKE ? AND NOT sistema_id LIKE ? ";
+							$stmt_bo=$this->conn->prepare($query_bo);								
+							$stmt_bo->bindParam(1,$this->vehiculo_id);
+							$stmt_bo->bindParam(2,$this->sistema_id[$i]);
+							$var[$i]=$this->sistema_id[$i];
+							$i++;
+							$stmt_bo->execute();
 						}
 
 						for($i=0; $i<count($this->sistema_id); $i++){
